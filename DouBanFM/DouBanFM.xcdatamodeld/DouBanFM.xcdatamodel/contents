@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="8193.2" systemVersion="14F27" minimumToolsVersion="Automatic">
+    <entity name="Chanel" representedClassName=".Chanel" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="songs" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Song" inverseName="chanel" inverseEntity="Song" syncable="YES"/>
+    </entity>
+    <entity name="DownloadSong" representedClassName=".DownloadSong" syncable="YES">
+        <attribute name="album" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="artist" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="image" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="song" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Singer" representedClassName=".Singer" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="songs" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Song" inverseName="singer" inverseEntity="Song" syncable="YES"/>
+    </entity>
+    <entity name="Song" representedClassName=".Song" syncable="YES">
+        <attribute name="albumtitle" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="artist" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="image" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="is_favorite" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="picture_url" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="play_count" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="public_time" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="chanel" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Chanel" inverseName="songs" inverseEntity="Chanel" syncable="YES"/>
+        <relationship name="singer" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Singer" inverseName="songs" inverseEntity="Singer" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Chanel" positionX="-54" positionY="36" width="128" height="90"/>
+        <element name="DownloadSong" positionX="-45" positionY="63" width="128" height="120"/>
+        <element name="Singer" positionX="-36" positionY="72" width="128" height="90"/>
+        <element name="Song" positionX="-63" positionY="-18" width="128" height="210"/>
+    </elements>
+</model>
