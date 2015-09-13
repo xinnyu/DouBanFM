@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>ContextMenu.iOS.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>MJRefresh.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -27,22 +32,27 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>19BFD292379AA06A6BB17D78400844B0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>3DA374BB5346C86BB9E37D7D8A3F9705</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>40D159D9C044C86CDAFE79A3D0166209</key>
+		<key>5FB37698D8339BEEFACB1CC380B4A2A0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6438DB88E78ED12D8E7284AA1004B864</key>
+		<key>71DDC717B10BD01DA01E7294E4E8948C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C99CF196C847F92033FA8A0E511BDFCE</key>
+		<key>8CF87ACCF6E068CB91FCD790F7C91D2E</key>
 		<dict>
 			<key>primary</key>
 			<true/>

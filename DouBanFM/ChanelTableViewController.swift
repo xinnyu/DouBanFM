@@ -70,6 +70,8 @@ class ChanelTableViewController: UITableViewController,NetWorkStarkDelegate {
                 cells[i].transform = CGAffineTransformMakeTranslation( 0, 0)
                 }, completion: nil)
         }
+        
+        
     }
     
     override func viewDidAppear(animated: Bool) {

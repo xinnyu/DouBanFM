@@ -97,11 +97,11 @@ class ViewController: UIViewController ,PassURLDelegate,NetWorkStarkDelegate,UIG
         //设置指针图片的锚点
         self.changPianZhen.layer.anchorPoint = CGPointMake(6/22, 6/36.4)
         //设置顶部动画图片
-        self.topAnimationBtn.customView = self.animationImageView
+//        self.topAnimationBtn.customView = self.animationImageView
         //添加点击动作
         addSingleFingerOneClickForChangpianzhen()
         
-        self.listBtn.setImage(UIImage(named: "mred"), forState: UIControlState.Highlighted)
+        
         
         //let vc = self.storyboard?.instantiateViewControllerWithIdentifier("dldSongListView") as! DldSongListTableViewController
         print(self.navigationController?.viewControllers.count)
@@ -341,7 +341,7 @@ extension ViewController{
                 }
             }
         }else{
-            let alertView = UIAlertController(title: "喜欢", message: "该歌曲已存在", preferredStyle: UIAlertControllerStyle.Alert)
+            let alertView = UIAlertController(title: "", message: "正在使用离线播放", preferredStyle: UIAlertControllerStyle.Alert)
             alertView.addAction(UIAlertAction(title: "确定", style: UIAlertActionStyle.Cancel, handler: nil))
             self.presentViewController(alertView, animated: true, completion: nil)
         }
@@ -483,7 +483,10 @@ extension ViewController{
 extension ViewController:PassSongDetailDelegate{
     func didGetDetail(song: Song) {
         
-        self.dataMusicplayer.pause()
+        if dataMusicIsPlaying{
+            self.dataMusicplayer.pause()
+        }
+        
         
         currentNetSong.name = song.title
         currentNetSong.artistName = song.artist

@@ -1,26 +1,19 @@
 PODS:
-  - Alamofire (2.0.0-beta.4)
-  - MJRefresh (2.4.7)
+  - Alamofire (2.0.0)
+  - ContextMenu.iOS (1.0.0)
+  - MJRefresh (2.4.9)
   - pop (1.0.7)
 
 DEPENDENCIES:
-  - Alamofire (from `https://github.com/Alamofire/Alamofire.git`, branch `swift-2.0`)
+  - Alamofire (~> 2.0)
+  - ContextMenu.iOS (~> 1.0.0)
   - MJRefresh
   - pop (~> 1.0)
 
-EXTERNAL SOURCES:
-  Alamofire:
-    :branch: swift-2.0
-    :git: https://github.com/Alamofire/Alamofire.git
-
-CHECKOUT OPTIONS:
-  Alamofire:
-    :commit: 1108ae4461baa99d9c4898c213ec3e2e2956fab3
-    :git: https://github.com/Alamofire/Alamofire.git
-
 SPEC CHECKSUMS:
-  Alamofire: 20df1a4740a69d7cf6caf7fd06b8a8fc782f1ebd
-  MJRefresh: 6eb2f61338f89f64fd628fd43debcf479381ff59
+  Alamofire: 2f13548b29d25a58ecd91c9225fb51493e2b782b
+  ContextMenu.iOS: 7da78b3f99e604669b75e55146c6c33147f64f99
+  MJRefresh: be84acb912d0a66364f76a75426698a39528e2ed
   pop: 628ffc631644601567ee8bfaaaea493ebd7d0923
 
 COCOAPODS: 0.38.2

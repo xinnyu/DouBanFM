@@ -40,7 +40,7 @@
 		8CEFA4A01B9DDA9F0073EBC8 /* SongListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CEFA49F1B9DDA9F0073EBC8 /* SongListCell.swift */; settings = {ASSET_TAGS = (); }; };
 		8CEFA4A31B9DDE020073EBC8 /* NetSong.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CEFA4A21B9DDE020073EBC8 /* NetSong.swift */; settings = {ASSET_TAGS = (); }; };
 		8CF6953B1B9D623400C0C421 /* XYCircleAndRotationImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF6953A1B9D623400C0C421 /* XYCircleAndRotationImageView.swift */; settings = {ASSET_TAGS = (); }; };
-		E536C871B07949692AAFAD74 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F046EF04F9091F8FBC07753 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		CBE7C97C910A6ED6DCEB533F /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C7561F9F31075913E6C31BF /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,7 +61,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0F046EF04F9091F8FBC07753 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C167A9F1B9DD52600311745 /* SongListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongListTableViewController.swift; sourceTree = "<group>"; };
 		8C2B27991B9FEA3200EAAA52 /* LoveSongs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoveSongs.swift; sourceTree = "<group>"; };
 		8C3149441BA03DBC00E115F0 /* DownloadSong+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DownloadSong+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -90,6 +89,7 @@
 		8C31EF9A1B9C850E00862996 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		8C68DFF21BA164A9005C9297 /* Song+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Song+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		8C68DFF31BA164A9005C9297 /* Song.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
+		8C7561F9F31075913E6C31BF /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C783B411BA1D2A700EEE28B /* SwiftNotice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftNotice.swift; sourceTree = "<group>"; };
 		8C783B431BA1E10E00EEE28B /* DldSongListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DldSongListTableViewController.swift; sourceTree = "<group>"; };
 		8C783B451BA1E39C00EEE28B /* DldSongListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DldSongListCell.swift; sourceTree = "<group>"; };
@@ -111,7 +111,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E536C871B07949692AAFAD74 /* Pods.framework in Frameworks */,
+				CBE7C97C910A6ED6DCEB533F /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,7 +135,7 @@
 		2E5E8785F1C8207919DB01CF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				0F046EF04F9091F8FBC07753 /* Pods.framework */,
+				8C7561F9F31075913E6C31BF /* Pods.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -272,8 +272,8 @@
 				8C31EF371B9C56FB00862996 /* Sources */,
 				8C31EF381B9C56FB00862996 /* Frameworks */,
 				8C31EF391B9C56FB00862996 /* Resources */,
-				EDEDD1CABA6F06DC2F844064 /* Embed Pods Frameworks */,
 				8B43E16B2535AD490CC36CE3 /* Copy Pods Resources */,
+				0FC4E8753BC1B5F6C897FBBC /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -395,6 +395,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0FC4E8753BC1B5F6C897FBBC /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		6E62A3140A0AA71D691E8C65 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -423,21 +438,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		EDEDD1CABA6F06DC2F844064 /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

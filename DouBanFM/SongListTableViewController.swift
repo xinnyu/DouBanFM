@@ -11,17 +11,15 @@ import CoreData
 import MediaPlayer
 import AVKit
 import Alamofire
+import MJRefresh
 
 class SongListTableViewController: UITableViewController, UIGestureRecognizerDelegate{
 
     var loveSongArray = [Song]()
     
-    
     var dldSongArray = [DownloadSong]()
     var dldSongHelper = DldSongsHelper.shareDldSongs()
     var dldSongTitles = Set<String>()
-    
-    
     
     
     @IBOutlet var backBtn: UIBarButtonItem!
@@ -48,8 +46,11 @@ class SongListTableViewController: UITableViewController, UIGestureRecognizerDel
         self.backBtn.customView = AnimationImageView.shareAnimationImageView()
         
         setFootView()
+        
     }
     
+    
+
     
     //设置tableView下面空白
     
@@ -152,24 +153,28 @@ class SongListTableViewController: UITableViewController, UIGestureRecognizerDel
     
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 1{
-            let view = UIView(frame: CGRectMake(0, 0, self.view.frame.width, 24))
-            let label = UILabel(frame: CGRectMake(8, 2, self.view.frame.width - 8, 20))
+            let view = UIView(frame: CGRectMake(0, 0, self.view.frame.width, 26))
+            let label = UILabel(frame: CGRectMake(8, 3, self.view.frame.width - 8, 20))
             view.backgroundColor = UIColor(red:0.97, green:0.97, blue:0.97, alpha:1)
             label.text = "我喜欢的音乐(\(self.loveSongArray.count))"
             view.alpha = 0.9
             
-            label.font = UIFont.systemFontOfSize(9)
+            label.font = UIFont.systemFontOfSize(12)
             view.addSubview(label)
             return view
         }else{
             return nil
         }
-        
     }
     
     
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 24
+        if section == 1{
+            return 26
+        }else{
+            return 0
+        }
+        
     }
     
     
@@ -199,6 +204,15 @@ class SongListTableViewController: UITableViewController, UIGestureRecognizerDel
         
         if indexPath.section == 1{
             
+            let cell = tableView.cellForRowAtIndexPath(indexPath) as! SongListCell
+            let title = cell.songNameLabel.text!
+            
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { () -> Void in
+                self.coreDataHelper.loveSongPlayCountAdd(title)
+            })
+            
+            
+            
             isFromDld = false
             isPlayOffline = false
             
@@ -225,8 +239,16 @@ class SongListTableViewController: UITableViewController, UIGestureRecognizerDel
     // Override to support editing the table view.
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
-            // Delete the row from the data source
+            self.loveSongArray = LoveSongsHelper.shareLoveSong().loveSongs
+            self.loveSongArray.removeAtIndex(indexPath.row)
+            
+            let cell = tableView.cellForRowAtIndexPath(indexPath) as! SongListCell
+            let title = cell.songNameLabel.text!
+            self.coreDataHelper.removeLoveSongWithTitle(title)
+            
+            
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            tableView.reloadData()
         } else if editingStyle == .Insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    

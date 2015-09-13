@@ -20,6 +20,8 @@ class CoreDataHelper: NSObject {
     func searchAllSong() -> [Song]?{
         
         let fr = NSFetchRequest(entityName: "Song")
+        fr.sortDescriptors = [NSSortDescriptor(key: "play_count", ascending: false),NSSortDescriptor(key: "title", ascending: true)]
+        
         if let result = try! context.executeFetchRequest(fr) as? [Song]{
             return result
         }else{
@@ -27,6 +29,19 @@ class CoreDataHelper: NSObject {
             return nil
         }
     }
+    
+    
+    
+    func searchSongWithTitle(title:String) -> Song{
+        let fr = NSFetchRequest(entityName: "Song")
+        let predicate = NSPredicate(format: "title == %@", title)
+        fr.predicate = predicate
+        let result = try! context.executeFetchRequest(fr) as! [Song]
+        return result[0]
+    }
+    
+    
+    
     
     
     /**
@@ -70,6 +85,7 @@ class CoreDataHelper: NSObject {
             song.is_favorite = true
             song.public_time = publicTime
             song.image = imageData
+            song.play_count = NSNumber(int: 0)
             print("保存成功")
             appDelegate.saveContext()
             return true
@@ -78,6 +94,25 @@ class CoreDataHelper: NSObject {
             return false
         }
     }
+    
+    
+    //红心歌曲播放次数加1
+    
+    func loveSongPlayCountAdd(title:String){
+        let song  = searchSongWithTitle(title)
+        let count = song.play_count?.intValue
+        song.play_count = NSNumber(int: count! + 1)
+        
+        appDelegate.saveContext()
+        
+    }
+    
+    
+    
+    
+    
+    
+    
     
     // 保存下载歌曲
     
@@ -112,6 +147,46 @@ class CoreDataHelper: NSObject {
         let result = try! context.executeFetchRequest(fr) as! [DownloadSong]
         return result
     }
+    
+    func seachTheDldSongWithTitle(title:String) -> DownloadSong{
+        let fr = NSFetchRequest(entityName: "DownloadSong")
+        let predicate = NSPredicate(format: "title == %@", title)
+        
+        
+        fr.predicate = predicate
+        let result = try! context.executeFetchRequest(fr) as! [DownloadSong]
+        return result[0]
+    }
+    
+    
+    
+    //删除喜欢歌曲
+    
+    func removeLoveSongWithIndex(index:Int){
+        let songs = searchAllSong()
+        let song = songs![index]
+        context.deleteObject(song)
+        appDelegate.saveContext()
+    }
+    
+    
+    func removeLoveSongWithTitle(title:String){
+        let song = searchSongWithTitle(title)
+        context.deleteObject(song)
+        appDelegate.saveContext()
+    }
+    
+    
+    
+    //删除下载歌曲
+    
+    func removeDldSongWithIndex(title:String){
+        let song = seachTheDldSongWithTitle(title)
+        context.deleteObject(song)
+        self.appDelegate.saveContext()
+    }
+    
+    
     
     
 }
