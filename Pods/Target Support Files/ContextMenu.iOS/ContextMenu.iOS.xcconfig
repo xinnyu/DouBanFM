@@ -1,1 +1,0 @@
-CONTEXTMENU_IOS_OTHER_LDFLAGS = -framework "QuartzCore" -framework "UIKit"

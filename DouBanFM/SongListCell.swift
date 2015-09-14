@@ -18,6 +18,8 @@ class SongListCell: UITableViewCell {
     
     @IBOutlet var songNameLabel: UILabel!
 
+    @IBOutlet var playMask: UIImageView!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()

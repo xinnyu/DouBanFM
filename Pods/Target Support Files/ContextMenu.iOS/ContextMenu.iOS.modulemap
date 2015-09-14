@@ -1,6 +1,0 @@
-framework module ContextMenu_iOS {
-  umbrella header "ContextMenu.iOS-umbrella.h"
-
-  export *
-  module * { export * }
-}

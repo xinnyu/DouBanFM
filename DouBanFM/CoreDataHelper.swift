@@ -17,6 +17,9 @@ class CoreDataHelper: NSObject {
         return appDelegate.managedObjectContext
     }
     
+    
+    
+    //搜索所有歌曲
     func searchAllSong() -> [Song]?{
         
         let fr = NSFetchRequest(entityName: "Song")
@@ -31,7 +34,7 @@ class CoreDataHelper: NSObject {
     }
     
     
-    
+    //按标题查询喜欢歌曲
     func searchSongWithTitle(title:String) -> Song{
         let fr = NSFetchRequest(entityName: "Song")
         let predicate = NSPredicate(format: "title == %@", title)
@@ -141,13 +144,13 @@ class CoreDataHelper: NSObject {
         return count
     }
     
-    
+    //查询所有下载歌曲
     func seachAllDldSong() -> [DownloadSong]{
         let fr = NSFetchRequest(entityName: "DownloadSong")
         let result = try! context.executeFetchRequest(fr) as! [DownloadSong]
         return result
     }
-    
+    //按标题查询下载的歌曲
     func seachTheDldSongWithTitle(title:String) -> DownloadSong{
         let fr = NSFetchRequest(entityName: "DownloadSong")
         let predicate = NSPredicate(format: "title == %@", title)
@@ -177,13 +180,33 @@ class CoreDataHelper: NSObject {
     }
     
     
+    func removeAllLoveSong(){
+        let songs = searchAllSong()
+        for song in songs!{
+            self.context.deleteObject(song)
+            self.appDelegate.saveContext()
+        }
+    }
+    
+    
+    
+    
+    
     
     //删除下载歌曲
     
-    func removeDldSongWithIndex(title:String){
+    func removeDldSongWithTitle(title:String){
         let song = seachTheDldSongWithTitle(title)
         context.deleteObject(song)
         self.appDelegate.saveContext()
+    }
+    
+    func removeAllDldSong(){
+        let songs = seachAllDldSong()
+        for song in songs{
+            self.context.deleteObject(song)
+            self.appDelegate.saveContext()
+        }
     }
     
     

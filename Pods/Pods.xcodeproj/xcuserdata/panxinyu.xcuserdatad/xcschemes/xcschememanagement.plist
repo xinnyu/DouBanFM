@@ -9,7 +9,7 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>ContextMenu.iOS.xcscheme</key>
+		<key>BTNavigationDropdownMenu.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -32,7 +32,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>19BFD292379AA06A6BB17D78400844B0</key>
+		<key>1726E8889E4CEBCAF3B9EFC715626C67</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>18A852C3A8C241EB39FCF1CEEC569694</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2A7A7F727674D078C6EF5A37A44AE945</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -42,17 +52,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5FB37698D8339BEEFACB1CC380B4A2A0</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>71DDC717B10BD01DA01E7294E4E8948C</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>8CF87ACCF6E068CB91FCD790F7C91D2E</key>
+		<key>AF40AB65F77144A5A6D4FD9C4D94D467</key>
 		<dict>
 			<key>primary</key>
 			<true/>

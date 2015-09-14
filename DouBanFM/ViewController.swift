@@ -10,6 +10,8 @@ import UIKit
 import MediaPlayer
 import AVKit
 import CoreData
+import BTNavigationDropdownMenu
+
 
 var isPlayOffline = false
 var isFromDld = false
@@ -50,7 +52,8 @@ class ViewController: UIViewController ,PassURLDelegate,NetWorkStarkDelegate,UIG
     
     var musicPlayer:AVPlayer!
     
-//    var CurrentPlayerItem:AVPlayerItem
+
+    
     
     @IBOutlet var rotationImage1: XYCircleAndRotationImageView!
     
@@ -70,6 +73,7 @@ class ViewController: UIViewController ,PassURLDelegate,NetWorkStarkDelegate,UIG
     
     @IBOutlet var bigBlurView: UIVisualEffectView!
     
+    @IBOutlet weak var moreBtn: UIBarButtonItem!
     var animationImageView = AnimationImageView.shareAnimationImageView()
     
     
@@ -101,15 +105,15 @@ class ViewController: UIViewController ,PassURLDelegate,NetWorkStarkDelegate,UIG
         //添加点击动作
         addSingleFingerOneClickForChangpianzhen()
         
-        
-        
-        //let vc = self.storyboard?.instantiateViewControllerWithIdentifier("dldSongListView") as! DldSongListTableViewController
-        print(self.navigationController?.viewControllers.count)
+
         
     }
     
     
     override func viewDidAppear(animated: Bool) {
+        
+        self.navigationController?.navigationBar.barTintColor = color
+        setMoreBtn()
         
         loveSongsArray = self.loveSongsHelper.loveSongs
         dldSongArray = self.dldSongHelper.dldSongs
@@ -127,6 +131,47 @@ class ViewController: UIViewController ,PassURLDelegate,NetWorkStarkDelegate,UIG
             
         }
     }
+    
+    
+    //更多按钮
+    
+    func setMoreBtn(){
+        
+        let items = ["随机播放喜欢的歌曲", "随机播放下载的歌曲", "单曲循环" ,"设置"]
+        
+        
+        let view = BTNavigationDropdownMenu(title: "", items: items)
+        
+        view.arrowImage = UIImage(named: "ar")
+        view.arrowPadding = -15
+        view.cellHeight = 44
+        view.cellSeparatorColor = UIColor.clearColor()
+        
+        view.cellBackgroundColor = color
+        
+        view.checkMarkImage = UIImage(named: "checkmark")
+        self.moreBtn.customView = view
+        
+        view.didSelectItemAtIndexHandler = {(indexPath:Int) -> () in
+            
+            print(indexPath)
+            switch indexPath{
+            case 0 :
+                print(0)
+            case 1 :
+                print(1)
+            case 2 :
+                print(2)
+            case 3 :
+                self.presentViewController((self.storyboard?.instantiateViewControllerWithIdentifier("setView"))!, animated: true, completion: nil)
+            default :
+                break
+            }
+        }
+    }
+    
+    
+    
     
     
     var currentIndex = CurrentDataSong.shareCurrentDataSong().index
@@ -304,6 +349,7 @@ class ViewController: UIViewController ,PassURLDelegate,NetWorkStarkDelegate,UIG
             let nvc = segue.destinationViewController as! UINavigationController
             let vc = nvc.topViewController as! SongListTableViewController
 
+            vc.currentSongTitle = self.currentNetSong.name
             vc.loveSongArray = self.loveSongsHelper.loveSongs
             vc.dldSongArray = self.dldSongHelper.dldSongs
             vc.dldSongTitles = self.dldSongHelper.dldSongsTitle

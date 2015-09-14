@@ -17,6 +17,8 @@ class SongListTableViewController: UITableViewController, UIGestureRecognizerDel
 
     var loveSongArray = [Song]()
     
+    var currentSongTitle:String?
+    
     var dldSongArray = [DownloadSong]()
     var dldSongHelper = DldSongsHelper.shareDldSongs()
     var dldSongTitles = Set<String>()
@@ -83,7 +85,10 @@ class SongListTableViewController: UITableViewController, UIGestureRecognizerDel
     
     
     override func viewWillAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         addSingleFingerOneClick()
+        self.navigationController?.navigationBar.barTintColor = color
+        tableView.reloadData()
     }
     
     
@@ -133,6 +138,16 @@ class SongListTableViewController: UITableViewController, UIGestureRecognizerDel
             cell.songNameLabel.text = loveSongArray[indexPath.row].title
             cell.artistNameLabel.text = loveSongArray[indexPath.row].artist! + " - " + loveSongArray[indexPath.row].albumtitle!
             cell.dldBtn.tag = indexPath.row
+            
+            
+            
+            if cell.songNameLabel.text == self.currentSongTitle {
+                
+                cell.playMask.hidden = false
+             
+            }
+            
+            
             
             if self.dldSongTitles.contains(cell.songNameLabel.text!) {
                 cell.dldBtn.setImage(UIImage(named: "cm2_icn_dlded"), forState: UIControlState.Normal)
@@ -207,17 +222,23 @@ class SongListTableViewController: UITableViewController, UIGestureRecognizerDel
             let cell = tableView.cellForRowAtIndexPath(indexPath) as! SongListCell
             let title = cell.songNameLabel.text!
             
+            if cell.songNameLabel.text == currentSongTitle {
+                isFromDld = false
+                isPlayOffline = false
+                dismissViewControllerAnimated(true, completion: nil)
+            }else{
+                isFromDld = false
+                isPlayOffline = false
+                
+                self.dismissViewControllerAnimated(true, completion: nil)
+                passDetailDelegate?.didGetDetail(loveSongArray[indexPath.row])
+            }
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { () -> Void in
                 self.coreDataHelper.loveSongPlayCountAdd(title)
             })
             
             
             
-            isFromDld = false
-            isPlayOffline = false
-            
-            self.dismissViewControllerAnimated(true, completion: nil)
-            passDetailDelegate?.didGetDetail(loveSongArray[indexPath.row])
         }
         
         tableView.deselectRowAtIndexPath(indexPath, animated: true)

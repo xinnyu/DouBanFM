@@ -1,18 +1,18 @@
 PODS:
   - Alamofire (2.0.0)
-  - ContextMenu.iOS (1.0.0)
+  - BTNavigationDropdownMenu (0.1.7)
   - MJRefresh (2.4.9)
   - pop (1.0.7)
 
 DEPENDENCIES:
   - Alamofire (~> 2.0)
-  - ContextMenu.iOS (~> 1.0.0)
+  - BTNavigationDropdownMenu
   - MJRefresh
   - pop (~> 1.0)
 
 SPEC CHECKSUMS:
   Alamofire: 2f13548b29d25a58ecd91c9225fb51493e2b782b
-  ContextMenu.iOS: 7da78b3f99e604669b75e55146c6c33147f64f99
+  BTNavigationDropdownMenu: b504a1e9c93107d1d08b9bc6d543526d9977f980
   MJRefresh: be84acb912d0a66364f76a75426698a39528e2ed
   pop: 628ffc631644601567ee8bfaaaea493ebd7d0923
 

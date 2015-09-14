@@ -7,3 +7,5 @@
 #import <pop/POP.h>
 
 @import pop;
+
+#import <KxMenu/KxMenu.h>

@@ -14,6 +14,8 @@ class DldSongListTableViewController: UITableViewController,UIGestureRecognizerD
     
     var delegate:PassDldSongDelegate?
     
+    var coreDataHelper:CoreDataHelper = CoreDataHelper()
+    
     @IBOutlet var animationBtn: UIBarButtonItem!
     
     @IBAction func backBtnClick(sender: UIBarButtonItem) {
@@ -103,25 +105,35 @@ class DldSongListTableViewController: UITableViewController,UIGestureRecognizerD
         dismissViewControllerAnimated(true, completion: nil)
     }
 
-    /*
+    
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
         return true
     }
-    */
+    
 
-    /*
+    
     // Override to support editing the table view.
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
-            // Delete the row from the data source
+            self.dldSongs = DldSongsHelper.shareDldSongs().dldSongs
+            self.dldSongs!.removeAtIndex(indexPath.row)
+            
+            let cell = tableView.cellForRowAtIndexPath(indexPath) as! DldSongListCell
+            let title = cell.titleLabel.text
+            self.coreDataHelper.removeDldSongWithTitle(title!)
+            
+            
+            
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            tableView.reloadData()
+            
         } else if editingStyle == .Insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
-    */
+    
 
     /*
     // Override to support rearranging the table view.

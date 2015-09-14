@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2804A5129F4045A20DC129C7"
-               BuildableName = "ContextMenu_iOS.framework"
-               BlueprintName = "ContextMenu.iOS"
+               BlueprintIdentifier = "D61ED21B10C2C0FF1CF971C3"
+               BuildableName = "BTNavigationDropdownMenu.framework"
+               BlueprintName = "BTNavigationDropdownMenu"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

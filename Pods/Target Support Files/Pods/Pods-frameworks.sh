@@ -53,13 +53,13 @@ code_sign_if_enabled() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework 'Pods/Alamofire.framework'
-  install_framework 'Pods/ContextMenu_iOS.framework'
+  install_framework 'Pods/BTNavigationDropdownMenu.framework'
   install_framework 'Pods/MJRefresh.framework'
   install_framework 'Pods/pop.framework'
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'Pods/Alamofire.framework'
-  install_framework 'Pods/ContextMenu_iOS.framework'
+  install_framework 'Pods/BTNavigationDropdownMenu.framework'
   install_framework 'Pods/MJRefresh.framework'
   install_framework 'Pods/pop.framework'
 fi
