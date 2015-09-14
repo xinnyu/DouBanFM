@@ -60,6 +60,7 @@ class SetTableViewController: UITableViewController {
 
     @IBAction func doneBtnClick(sender: UIBarButtonItem) {
         
+        isFromDld = false
         dismissViewControllerAnimated(true, completion: nil)
     }
     

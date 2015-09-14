@@ -34,6 +34,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidEnterBackground(application: UIApplication) {
         
+        application.beginReceivingRemoteControlEvents()
+        
+        
     }
 
     func applicationWillEnterForeground(application: UIApplication) {

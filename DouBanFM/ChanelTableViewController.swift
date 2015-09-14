@@ -166,6 +166,10 @@ class ChanelTableViewController: UITableViewController,NetWorkStarkDelegate {
         self.songsURL = "http://douban.fm/j/mine/playlist?type=n&channel=\(indexPath.row)&from=mainsite"
         delegate?.didGetURL(self.songsURL)
         
+        isFromDld = false
+        isPlayOffline = false
+        isRandomPlayOnline = false
+        isRandomPlayOffline = false
         self.navigationController?.popViewControllerAnimated(true)
     }
 

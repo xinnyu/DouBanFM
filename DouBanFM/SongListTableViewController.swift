@@ -125,8 +125,6 @@ class SongListTableViewController: UITableViewController, UIGestureRecognizerDel
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
-        
 
         if indexPath.section == 0{
             let dldCell = tableView.dequeueReusableCellWithIdentifier("dldMusicCell", forIndexPath: indexPath)
@@ -139,15 +137,19 @@ class SongListTableViewController: UITableViewController, UIGestureRecognizerDel
             cell.artistNameLabel.text = loveSongArray[indexPath.row].artist! + " - " + loveSongArray[indexPath.row].albumtitle!
             cell.dldBtn.tag = indexPath.row
             
-            
-            
             if cell.songNameLabel.text == self.currentSongTitle {
-                
                 cell.playMask.hidden = false
-             
+                cell.playMask.animationImages = [UIImage(named: "cm2_top_icn_playing_prs")!,
+                    UIImage(named: "cm2_top_icn_playing2_prs")!,
+                    UIImage(named: "cm2_top_icn_playing3_prs")!,
+                    UIImage(named: "cm2_top_icn_playing4_prs")!,
+                    UIImage(named: "cm2_top_icn_playing5_prs")!,
+                    UIImage(named: "cm2_top_icn_playing6_prs")!]
+                cell.playMask.animationDuration = 1.5
+                cell.playMask.startAnimating()
+            }else{
+                cell.playMask.hidden = true
             }
-            
-            
             
             if self.dldSongTitles.contains(cell.songNameLabel.text!) {
                 cell.dldBtn.setImage(UIImage(named: "cm2_icn_dlded"), forState: UIControlState.Normal)
@@ -156,8 +158,6 @@ class SongListTableViewController: UITableViewController, UIGestureRecognizerDel
                 cell.dldBtn.setImage(UIImage(named: "cm2_icn_dld"), forState: UIControlState.Normal)
                 cell.dldBtn.enabled = true
             }
-            
-        
             
             cell.dldBtn.addTarget(self, action: "dldBtnClick:", forControlEvents: UIControlEvents.TouchUpInside)
             return cell
@@ -170,9 +170,9 @@ class SongListTableViewController: UITableViewController, UIGestureRecognizerDel
         if section == 1{
             let view = UIView(frame: CGRectMake(0, 0, self.view.frame.width, 26))
             let label = UILabel(frame: CGRectMake(8, 3, self.view.frame.width - 8, 20))
-            view.backgroundColor = UIColor(red:0.97, green:0.97, blue:0.97, alpha:1)
+            view.backgroundColor = color
             label.text = "我喜欢的音乐(\(self.loveSongArray.count))"
-            view.alpha = 0.9
+            view.alpha = 0.5
             
             label.font = UIFont.systemFontOfSize(12)
             view.addSubview(label)
