@@ -10,3 +10,5 @@ pod 'pop', '~> 1.0'
 
 
 pod 'BTNavigationDropdownMenu'
+
+pod 'HCSStarRatingView', '~> 1.4.2'

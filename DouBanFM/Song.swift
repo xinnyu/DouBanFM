@@ -2,7 +2,7 @@
 //  Song.swift
 //  DouBanFM
 //
-//  Created by 潘新宇 on 15/9/10.
+//  Created by 潘新宇 on 15/9/15.
 //  Copyright © 2015年 潘新宇. All rights reserved.
 //
 

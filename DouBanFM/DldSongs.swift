@@ -12,7 +12,7 @@ class DldSongsHelper: NSObject {
     
     let coreDataHelper = CoreDataHelper()
     
-    var dldSongsTitle:Set<String> = []
+    var dldSongsID:Set<String> = []
     
     class func shareDldSongs() -> DldSongsHelper {
         dispatch_once(&singleTon.once_t) { () -> Void in
@@ -28,7 +28,7 @@ class DldSongsHelper: NSObject {
     
     var dldSongs:[DownloadSong]{
         for song in coreDataHelper.seachAllDldSong(){
-            dldSongsTitle.insert(song.title!)
+            dldSongsID.insert(song.id!)
         }
         
         return coreDataHelper.seachAllDldSong()

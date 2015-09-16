@@ -14,6 +14,7 @@ class DldSongListCell: UITableViewCell {
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var artistLabel: UILabel!
     
+    @IBOutlet var markImage: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

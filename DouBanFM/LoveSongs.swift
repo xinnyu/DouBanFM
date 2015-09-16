@@ -27,14 +27,14 @@ class LoveSongsHelper: NSObject {
         let songs = coreDataHelper.searchAllSong()
         if songs!.count != 0{
             for song in songs! {
-                loveSongsTitle.insert(song.title!)
+                loveSongsID.insert(song.id!)
             }
         }
         
         return coreDataHelper.searchAllSong()!
     }
     
-    var loveSongsTitle:Set<String> = []
+    var loveSongsID:Set<String> = []
     
     var coreDataHelper = CoreDataHelper()
     

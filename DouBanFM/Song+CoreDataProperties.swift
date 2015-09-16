@@ -2,7 +2,7 @@
 //  Song+CoreDataProperties.swift
 //  DouBanFM
 //
-//  Created by 潘新宇 on 15/9/10.
+//  Created by 潘新宇 on 15/9/15.
 //  Copyright © 2015年 潘新宇. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -23,6 +23,7 @@ extension Song {
     @NSManaged var public_time: String?
     @NSManaged var title: String?
     @NSManaged var url: String?
+    @NSManaged var id: String?
     @NSManaged var chanel: Chanel?
     @NSManaged var singer: Singer?
 

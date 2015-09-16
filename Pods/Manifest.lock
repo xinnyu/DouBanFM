@@ -1,18 +1,21 @@
 PODS:
   - Alamofire (2.0.0)
   - BTNavigationDropdownMenu (0.1.7)
+  - HCSStarRatingView (1.4.2)
   - MJRefresh (2.4.9)
   - pop (1.0.7)
 
 DEPENDENCIES:
   - Alamofire (~> 2.0)
   - BTNavigationDropdownMenu
+  - HCSStarRatingView (~> 1.4.2)
   - MJRefresh
   - pop (~> 1.0)
 
 SPEC CHECKSUMS:
   Alamofire: 2f13548b29d25a58ecd91c9225fb51493e2b782b
   BTNavigationDropdownMenu: b504a1e9c93107d1d08b9bc6d543526d9977f980
+  HCSStarRatingView: 6157471eff9fe3ec7240e131a5b0aba39f097e57
   MJRefresh: be84acb912d0a66364f76a75426698a39528e2ed
   pop: 628ffc631644601567ee8bfaaaea493ebd7d0923
 

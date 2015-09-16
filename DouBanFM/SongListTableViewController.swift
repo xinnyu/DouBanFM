@@ -17,11 +17,15 @@ class SongListTableViewController: UITableViewController, UIGestureRecognizerDel
 
     var loveSongArray = [Song]()
     
-    var currentSongTitle:String?
+     var currentSongTitle:String?
+    
+    var currentSongID:String?
     
     var dldSongArray = [DownloadSong]()
+    
     var dldSongHelper = DldSongsHelper.shareDldSongs()
-    var dldSongTitles = Set<String>()
+    
+    var dldSongsID = Set<String>()
     
     
     @IBOutlet var backBtn: UIBarButtonItem!
@@ -49,9 +53,24 @@ class SongListTableViewController: UITableViewController, UIGestureRecognizerDel
         
         setFootView()
         
+        configureBackBtn()
+        
     }
     
-    
+    //设置返回按钮
+    func configureBackBtn(){
+        let backItem = UIBarButtonItem()
+        backItem.title = " "
+        self.navigationItem.backBarButtonItem = backItem
+        //self.navigationController?.navigationBar.tintColor = UIColor.blackColor()
+        
+        //自定义图片
+//        let image = UIImage(named: "cm2_top_icn_back_prs")
+//        image?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
+//        self.navigationController?.navigationBar.backIndicatorImage = image
+//        self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = image
+        
+    }
 
     
     //设置tableView下面空白
@@ -92,10 +111,7 @@ class SongListTableViewController: UITableViewController, UIGestureRecognizerDel
     }
     
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+
     
 
     // MARK: - Table view data source
@@ -137,21 +153,35 @@ class SongListTableViewController: UITableViewController, UIGestureRecognizerDel
             cell.artistNameLabel.text = loveSongArray[indexPath.row].artist! + " - " + loveSongArray[indexPath.row].albumtitle!
             cell.dldBtn.tag = indexPath.row
             
-            if cell.songNameLabel.text == self.currentSongTitle {
+            self.loveSongArray = LoveSongsHelper.shareLoveSong().loveSongs
+            let song = loveSongArray[indexPath.row]
+            let id = song.id
+            
+            if id == self.currentSongID {
                 cell.playMask.hidden = false
-                cell.playMask.animationImages = [UIImage(named: "cm2_top_icn_playing_prs")!,
-                    UIImage(named: "cm2_top_icn_playing2_prs")!,
-                    UIImage(named: "cm2_top_icn_playing3_prs")!,
-                    UIImage(named: "cm2_top_icn_playing4_prs")!,
-                    UIImage(named: "cm2_top_icn_playing5_prs")!,
-                    UIImage(named: "cm2_top_icn_playing6_prs")!]
-                cell.playMask.animationDuration = 1.5
-                cell.playMask.startAnimating()
+                
+                let image = UIImage(named: "cm2_discover_icn_idol")
+                let image1 = image?.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+                cell.playMask.image = image1
+                
+                if color != UIColor(red:0.97, green:0.97, blue:0.97, alpha:1){
+                    cell.playMask.tintColor = color
+                }
+                
+//                cell.playMask.animationImages = [UIImage(named: "cm2_top_icn_playing_prs")!,
+//                    UIImage(named: "cm2_top_icn_playing2_prs")!,
+//                    UIImage(named: "cm2_top_icn_playing3_prs")!,
+//                    UIImage(named: "cm2_top_icn_playing4_prs")!,
+//                    UIImage(named: "cm2_top_icn_playing5_prs")!,
+//                    UIImage(named: "cm2_top_icn_playing6_prs")!]
+//                cell.playMask.animationDuration = 1.5
+                
+//                cell.playMask.startAnimating()
             }else{
                 cell.playMask.hidden = true
             }
             
-            if self.dldSongTitles.contains(cell.songNameLabel.text!) {
+            if self.dldSongsID.contains(id!) {
                 cell.dldBtn.setImage(UIImage(named: "cm2_icn_dlded"), forState: UIControlState.Normal)
                 cell.dldBtn.enabled = false
             }else{
@@ -198,17 +228,19 @@ class SongListTableViewController: UITableViewController, UIGestureRecognizerDel
     func dldBtnClick(sender:UIButton){
         print("\(sender.tag)")
         self.noticeTop("已加入下载", autoClear: true)
+        self.loveSongArray = LoveSongsHelper.shareLoveSong().loveSongs
         let song = loveSongArray[sender.tag]
         let url = song.url
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { () -> Void in
             let songData = NSData(contentsOfURL: NSURL(string: url!)!)!
-            self.coreDataHelper.saveDldSong(song.title!, artist: song.artist!, album: song.albumtitle!, image: song.image!, song: songData)
+            self.coreDataHelper.saveDldSong(song.id!,title: song.title!, artist: song.artist!, album: song.albumtitle!, image: song.image!, song: songData)
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.successNotice("下载完成", autoClear: true)
                 sender.setImage(UIImage(named: "cm2_icn_dlded"), forState: UIControlState.Normal)
                 sender.enabled = false
                 self.dldSongArray = self.dldSongHelper.dldSongs
-                self.dldSongTitles = self.dldSongHelper.dldSongsTitle
+                self.dldSongsID = self.dldSongHelper.dldSongsID
+                self.tableView.reloadData()
             })
         }
     }
@@ -219,26 +251,26 @@ class SongListTableViewController: UITableViewController, UIGestureRecognizerDel
         
         if indexPath.section == 1{
             
-            let cell = tableView.cellForRowAtIndexPath(indexPath) as! SongListCell
-            let title = cell.songNameLabel.text!
+            self.loveSongArray = LoveSongsHelper.shareLoveSong().loveSongs
             
-            if cell.songNameLabel.text == currentSongTitle {
+            let id = self.loveSongArray[indexPath.row].id
+            print(id)
+            
+            if id == currentSongID {
                 isFromDld = false
                 isPlayOffline = false
                 dismissViewControllerAnimated(true, completion: nil)
             }else{
                 isFromDld = false
                 isPlayOffline = false
-                
                 self.dismissViewControllerAnimated(true, completion: nil)
                 passDetailDelegate?.didGetDetail(loveSongArray[indexPath.row])
             }
+            
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { () -> Void in
-                self.coreDataHelper.loveSongPlayCountAdd(title)
+                self.coreDataHelper.loveSongPlayCountAdd(id!)
+                print(1)
             })
-            
-            
-            
         }
         
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
@@ -261,11 +293,12 @@ class SongListTableViewController: UITableViewController, UIGestureRecognizerDel
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             self.loveSongArray = LoveSongsHelper.shareLoveSong().loveSongs
-            self.loveSongArray.removeAtIndex(indexPath.row)
             
-            let cell = tableView.cellForRowAtIndexPath(indexPath) as! SongListCell
-            let title = cell.songNameLabel.text!
-            self.coreDataHelper.removeLoveSongWithTitle(title)
+            let id  = self.loveSongArray[indexPath.row].id
+            
+            self.loveSongArray.removeAtIndex(indexPath.row)
+            //print(loveSongArray.count)
+            self.coreDataHelper.removeLoveSongWithID(id!)
             
             
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
@@ -286,6 +319,8 @@ class SongListTableViewController: UITableViewController, UIGestureRecognizerDel
             let vc = segue.destinationViewController as! DldSongListTableViewController
             self.dldSongArray = DldSongsHelper.shareDldSongs().dldSongs
             vc.dldSongs = self.dldSongArray
+            vc.currentSongID = self.currentSongID
+            
         }
         
     }

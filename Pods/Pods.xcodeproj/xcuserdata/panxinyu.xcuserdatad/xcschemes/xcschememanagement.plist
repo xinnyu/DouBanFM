@@ -14,6 +14,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>HCSStarRatingView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>MJRefresh.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -32,27 +37,32 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>1726E8889E4CEBCAF3B9EFC715626C67</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>18A852C3A8C241EB39FCF1CEEC569694</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>2A7A7F727674D078C6EF5A37A44AE945</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>3DA374BB5346C86BB9E37D7D8A3F9705</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>AF40AB65F77144A5A6D4FD9C4D94D467</key>
+		<key>4A1008E955828921D4FD6EC2A452CDA6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4BAEA49C00F9BB67A66871C6C057C09E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>77D0C4E78680D8987D4245B668273E0D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7BBCBE4D344EA707F2A2C8EB6A7E7DCB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BE77FE81D2660E36810BAB3E1FF788BE</key>
 		<dict>
 			<key>primary</key>
 			<true/>

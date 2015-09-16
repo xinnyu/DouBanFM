@@ -22,6 +22,7 @@ class NetWorkStark:NSObject{
                 self.delegate?.didGetResult(data!)
             }else{
                 print("网络请求错误：" + err.debugDescription)
+                self.delegate?.didGetError(err)
             }
         }
     }
@@ -38,4 +39,5 @@ class NetWorkStark:NSObject{
 
 protocol NetWorkStarkDelegate{
     func didGetResult(data:NSData)
+    func didGetError(err:ErrorType?)
 }

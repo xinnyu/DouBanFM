@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "white.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "cm2_vol_btn_speaker@2x.png",
       "scale" : "2x"
     },
     {

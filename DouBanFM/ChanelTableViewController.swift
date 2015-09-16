@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 import MJRefresh
 
-class ChanelTableViewController: UITableViewController,NetWorkStarkDelegate {
+class ChanelTableViewController: UITableViewController, NetWorkStarkDelegate ,UINavigationControllerDelegate {
     
     
     //创建一个AppDelegate实例
@@ -33,12 +33,10 @@ class ChanelTableViewController: UITableViewController,NetWorkStarkDelegate {
     //定义一个NSFetchedResultsController实例
     var fetchedResultsController:NSFetchedResultsController?
 
+    @IBOutlet var backBtn: UIBarButtonItem!
     
     //频道列表界面返回按钮的点击事件
-    @IBAction func backBtnClick(sender: UIBarButtonItem) {
-        self.navigationController?.popViewControllerAnimated(true)
-        isFromDld = false
-    }
+    
     
     // MARK: - 配置MJRefresh
     func configureMJRefresh(){
@@ -51,15 +49,14 @@ class ChanelTableViewController: UITableViewController,NetWorkStarkDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         netWorkStack.delegate = self
         configureMJRefresh()
         getChanelFromCoreData()
     }
-
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
+        isFromDld = false
         let cells = tableView.visibleCells
         for cell in cells{
             cell.transform = CGAffineTransformMakeTranslation( UIScreen.mainScreen().bounds.size.width, 0)
@@ -114,11 +111,18 @@ class ChanelTableViewController: UITableViewController,NetWorkStarkDelegate {
             }
             
         }else{
-            print("转换成JSON失败")
+            ProgressHUD.showError("网络连接错误，可以播放已下载的歌曲", interaction: true)
         }
-        
-        
     }
+    
+    func didGetError(err: ErrorType?) {
+        ProgressHUD.showError("网络连接错误，可以播放已下载的歌曲", interaction: true)
+    }
+    
+    
+    
+    
+    
     
     //删除CoreData中的所有数据
     func removeAllChanelsToCoreData(){
@@ -178,6 +182,8 @@ class ChanelTableViewController: UITableViewController,NetWorkStarkDelegate {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        isFromDld = false
         
     }
 }

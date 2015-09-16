@@ -10,6 +10,18 @@ import UIKit
 
 var color = UIColor(red:0.97, green:0.97, blue:0.97, alpha:1)
 
+let colors = [UIColor(red:0.97, green:0.97, blue:0.97, alpha:1),
+    UIColor(red:1, green:0.8, blue:0.4, alpha:1),
+    UIColor(red:0.4, green:1, blue:0.8, alpha:1),
+    UIColor(red:0.4, green:0.8, blue:1, alpha:1),
+    UIColor(red:0.97, green:0.37, blue:0.45, alpha:1),
+    UIColor(red:0.06, green:1, blue:0.53, alpha:1),
+    UIColor(red:0.28, green:0.89, blue:0.76, alpha:1),
+    UIColor(red:0.72, green:0.92, blue:0.51, alpha:1),
+    UIColor(red:0.45, green:0.9, blue:0.48, alpha:1)
+]
+
+
 
 class SetTableViewController: UITableViewController {
     
@@ -20,10 +32,6 @@ class SetTableViewController: UITableViewController {
         super.viewDidLoad()
 
         self.tableView.tableFooterView = UIView()
-        
-        
-        
-        
         
     }
 
@@ -70,30 +78,30 @@ class SetTableViewController: UITableViewController {
         color = UIColor(red:0.97, green:0.97, blue:0.97, alpha:1)
         
         self.navigationController?.navigationBar.barStyle = UIBarStyle.Default
-        self.navigationController?.navigationBar.barTintColor = UIColor(red:0.97, green:0.97, blue:0.97, alpha:1)
+        
+        
     }
     
     @IBAction func yellowBtnClick(sender: UIButton) {
         
         color = UIColor(red:1, green:0.8, blue:0.4, alpha:1)
-        self.navigationController?.navigationBar.barTintColor = UIColor(red:1, green:0.8, blue:0.4, alpha:1)
+        UIView.animateWithDuration(4) { () -> Void in
+            self.navigationController?.navigationBar.barTintColor = color
+        }
         
     }
     
     @IBAction func blueBtnClick(sender: UIButton) {
         color = UIColor(red:0.4, green:0.8, blue:1, alpha:1)
-        self.navigationController?.navigationBar.barTintColor = UIColor(red:0.4, green:0.8, blue:1, alpha:1)
+        UIView.animateWithDuration(4) { () -> Void in
+            self.navigationController?.navigationBar.barTintColor = color
+        }
     }
     @IBAction func greenBtnClick(sender: UIButton) {
         color = UIColor(red:0.4, green:1, blue:0.8, alpha:1)
-        self.navigationController?.navigationBar.barTintColor = UIColor(red:0.4, green:1, blue:0.8, alpha:1)
+        UIView.animateWithDuration(4) { () -> Void in
+            self.navigationController?.navigationBar.barTintColor = color
+        }
     }
-    
-    @IBAction func blackBtnClick(sender: UIButton) {
-        self.navigationController?.navigationBar.barStyle = UIBarStyle.BlackOpaque
-        
-    }
-    
-    
 
 }

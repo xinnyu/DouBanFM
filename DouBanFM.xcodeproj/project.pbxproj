@@ -9,9 +9,9 @@
 /* Begin PBXBuildFile section */
 		8C1435441BA6B7D70046D187 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C1435431BA6B7D70046D187 /* Assets.xcassets */; settings = {ASSET_TAGS = (); }; };
 		8C167AA01B9DD52600311745 /* SongListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C167A9F1B9DD52600311745 /* SongListTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		8C1B3FFF1BA7EB2E00035A95 /* ProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8C1B3FFC1BA7EB2E00035A95 /* ProgressHUD.bundle */; settings = {ASSET_TAGS = (); }; };
+		8C1B40001BA7EB2E00035A95 /* ProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1B3FFE1BA7EB2E00035A95 /* ProgressHUD.m */; settings = {ASSET_TAGS = (); }; };
 		8C2B279A1B9FEA3200EAAA52 /* LoveSongs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2B27991B9FEA3200EAAA52 /* LoveSongs.swift */; settings = {ASSET_TAGS = (); }; };
-		8C3149481BA03DBC00E115F0 /* DownloadSong+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3149441BA03DBC00E115F0 /* DownloadSong+CoreDataProperties.swift */; settings = {ASSET_TAGS = (); }; };
-		8C3149491BA03DBC00E115F0 /* DownloadSong.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3149451BA03DBC00E115F0 /* DownloadSong.swift */; settings = {ASSET_TAGS = (); }; };
 		8C31EF3F1B9C56FB00862996 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C31EF3E1B9C56FB00862996 /* AppDelegate.swift */; };
 		8C31EF411B9C56FB00862996 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C31EF401B9C56FB00862996 /* ViewController.swift */; };
 		8C31EF441B9C56FB00862996 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C31EF421B9C56FB00862996 /* Main.storyboard */; };
@@ -27,8 +27,10 @@
 		8C31EF971B9C78E400862996 /* Singer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C31EF911B9C78E400862996 /* Singer.swift */; };
 		8C31EF991B9C7C1600862996 /* NetWorkStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C31EF981B9C7C1600862996 /* NetWorkStack.swift */; settings = {ASSET_TAGS = (); }; };
 		8C31EF9B1B9C850E00862996 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C31EF9A1B9C850E00862996 /* SwiftyJSON.swift */; settings = {ASSET_TAGS = (); }; };
-		8C68DFF41BA164A9005C9297 /* Song+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C68DFF21BA164A9005C9297 /* Song+CoreDataProperties.swift */; settings = {ASSET_TAGS = (); }; };
-		8C68DFF51BA164A9005C9297 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C68DFF31BA164A9005C9297 /* Song.swift */; settings = {ASSET_TAGS = (); }; };
+		8C66F9421BA81F8700441487 /* DownloadSong+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C66F93E1BA81F8700441487 /* DownloadSong+CoreDataProperties.swift */; settings = {ASSET_TAGS = (); }; };
+		8C66F9431BA81F8700441487 /* DownloadSong.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C66F93F1BA81F8700441487 /* DownloadSong.swift */; settings = {ASSET_TAGS = (); }; };
+		8C66F9441BA81F8700441487 /* Song+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C66F9401BA81F8700441487 /* Song+CoreDataProperties.swift */; settings = {ASSET_TAGS = (); }; };
+		8C66F9451BA81F8700441487 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C66F9411BA81F8700441487 /* Song.swift */; settings = {ASSET_TAGS = (); }; };
 		8C783B421BA1D2A700EEE28B /* SwiftNotice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C783B411BA1D2A700EEE28B /* SwiftNotice.swift */; settings = {ASSET_TAGS = (); }; };
 		8C783B441BA1E10E00EEE28B /* DldSongListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C783B431BA1E10E00EEE28B /* DldSongListTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		8C783B461BA1E39C00EEE28B /* DldSongListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C783B451BA1E39C00EEE28B /* DldSongListCell.swift */; settings = {ASSET_TAGS = (); }; };
@@ -65,9 +67,10 @@
 /* Begin PBXFileReference section */
 		8C1435431BA6B7D70046D187 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8C167A9F1B9DD52600311745 /* SongListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongListTableViewController.swift; sourceTree = "<group>"; };
+		8C1B3FFC1BA7EB2E00035A95 /* ProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ProgressHUD.bundle; sourceTree = "<group>"; };
+		8C1B3FFD1BA7EB2E00035A95 /* ProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressHUD.h; sourceTree = "<group>"; };
+		8C1B3FFE1BA7EB2E00035A95 /* ProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressHUD.m; sourceTree = "<group>"; };
 		8C2B27991B9FEA3200EAAA52 /* LoveSongs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoveSongs.swift; sourceTree = "<group>"; };
-		8C3149441BA03DBC00E115F0 /* DownloadSong+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DownloadSong+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		8C3149451BA03DBC00E115F0 /* DownloadSong.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadSong.swift; sourceTree = "<group>"; };
 		8C31EF3B1B9C56FB00862996 /* DouBanFM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DouBanFM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C31EF3E1B9C56FB00862996 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8C31EF401B9C56FB00862996 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -89,8 +92,10 @@
 		8C31EF911B9C78E400862996 /* Singer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Singer.swift; sourceTree = "<group>"; };
 		8C31EF981B9C7C1600862996 /* NetWorkStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetWorkStack.swift; sourceTree = "<group>"; };
 		8C31EF9A1B9C850E00862996 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
-		8C68DFF21BA164A9005C9297 /* Song+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Song+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		8C68DFF31BA164A9005C9297 /* Song.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
+		8C66F93E1BA81F8700441487 /* DownloadSong+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DownloadSong+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		8C66F93F1BA81F8700441487 /* DownloadSong.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadSong.swift; sourceTree = "<group>"; };
+		8C66F9401BA81F8700441487 /* Song+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Song+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		8C66F9411BA81F8700441487 /* Song.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 		8C7561F9F31075913E6C31BF /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C783B411BA1D2A700EEE28B /* SwiftNotice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftNotice.swift; sourceTree = "<group>"; };
 		8C783B431BA1E10E00EEE28B /* DldSongListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DldSongListTableViewController.swift; sourceTree = "<group>"; };
@@ -153,6 +158,16 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		8C1B3FFB1BA7EB2E00035A95 /* ProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				8C1B3FFC1BA7EB2E00035A95 /* ProgressHUD.bundle */,
+				8C1B3FFD1BA7EB2E00035A95 /* ProgressHUD.h */,
+				8C1B3FFE1BA7EB2E00035A95 /* ProgressHUD.m */,
+			);
+			path = ProgressHUD;
+			sourceTree = "<group>";
+		};
 		8C31EF321B9C56FB00862996 = {
 			isa = PBXGroup;
 			children = (
@@ -187,6 +202,7 @@
 				8CD836B41B9C9A39009F7A4F /* DouBanFM-Bridging-Header.h */,
 				8C1435431BA6B7D70046D187 /* Assets.xcassets */,
 				8C31EF911B9C78E400862996 /* Singer.swift */,
+				8C1B3FFB1BA7EB2E00035A95 /* ProgressHUD */,
 				8CEFA4A11B9DDDCA0073EBC8 /* Model */,
 				8C3E910E1BA1B6AC00379444 /* View */,
 				8C3E910D1BA1B67E00379444 /* Controller */,
@@ -220,10 +236,10 @@
 		8C31EF8B1B9C78D100862996 /* CoreDataModel */ = {
 			isa = PBXGroup;
 			children = (
-				8C68DFF21BA164A9005C9297 /* Song+CoreDataProperties.swift */,
-				8C68DFF31BA164A9005C9297 /* Song.swift */,
-				8C3149441BA03DBC00E115F0 /* DownloadSong+CoreDataProperties.swift */,
-				8C3149451BA03DBC00E115F0 /* DownloadSong.swift */,
+				8C66F93E1BA81F8700441487 /* DownloadSong+CoreDataProperties.swift */,
+				8C66F93F1BA81F8700441487 /* DownloadSong.swift */,
+				8C66F9401BA81F8700441487 /* Song+CoreDataProperties.swift */,
+				8C66F9411BA81F8700441487 /* Song.swift */,
 				8C31EF8C1B9C78E400862996 /* Chanel+CoreDataProperties.swift */,
 				8C31EF8D1B9C78E400862996 /* Chanel.swift */,
 				8C31EF901B9C78E400862996 /* Singer+CoreDataProperties.swift */,
@@ -380,6 +396,7 @@
 				8C31EF4C1B9C56FB00862996 /* LaunchScreen.storyboard in Resources */,
 				8C31EF701B9C575700862996 /* Podfile in Resources */,
 				8C1435441BA6B7D70046D187 /* Assets.xcassets in Resources */,
+				8C1B3FFF1BA7EB2E00035A95 /* ProgressHUD.bundle in Resources */,
 				8C31EF441B9C56FB00862996 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -453,7 +470,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8C3149491BA03DBC00E115F0 /* DownloadSong.swift in Sources */,
 				8CEFA4A01B9DDA9F0073EBC8 /* SongListCell.swift in Sources */,
 				8C167AA01B9DD52600311745 /* SongListTableViewController.swift in Sources */,
 				8CA7FFCC1BA3F8FC00B64F8A /* CurrentDataSong.swift in Sources */,
@@ -465,22 +481,24 @@
 				8C783B421BA1D2A700EEE28B /* SwiftNotice.swift in Sources */,
 				8C83D3D51BA69BB7004F954B /* SetTableViewController.swift in Sources */,
 				8C7BA74A1B9EF1DB00302560 /* CoreDataHelper.swift in Sources */,
+				8C1B40001BA7EB2E00035A95 /* ProgressHUD.m in Sources */,
 				8C31EF9B1B9C850E00862996 /* SwiftyJSON.swift in Sources */,
-				8C68DFF41BA164A9005C9297 /* Song+CoreDataProperties.swift in Sources */,
 				8C2B279A1B9FEA3200EAAA52 /* LoveSongs.swift in Sources */,
 				8C31EF961B9C78E400862996 /* Singer+CoreDataProperties.swift in Sources */,
 				8CEFA4A31B9DDE020073EBC8 /* NetSong.swift in Sources */,
+				8C66F9431BA81F8700441487 /* DownloadSong.swift in Sources */,
+				8C66F9451BA81F8700441487 /* Song.swift in Sources */,
 				8C31EF411B9C56FB00862996 /* ViewController.swift in Sources */,
 				8CAA34371BA016ED0057667F /* AnimationImageView.swift in Sources */,
 				8C783B481BA1E44E00EEE28B /* DldSongs.swift in Sources */,
 				8C31EF931B9C78E400862996 /* Chanel.swift in Sources */,
-				8C68DFF51BA164A9005C9297 /* Song.swift in Sources */,
 				8C31EF471B9C56FB00862996 /* DouBanFM.xcdatamodeld in Sources */,
+				8C66F9421BA81F8700441487 /* DownloadSong+CoreDataProperties.swift in Sources */,
+				8C66F9441BA81F8700441487 /* Song+CoreDataProperties.swift in Sources */,
 				8C31EF921B9C78E400862996 /* Chanel+CoreDataProperties.swift in Sources */,
 				8CF6953B1B9D623400C0C421 /* XYCircleAndRotationImageView.swift in Sources */,
 				8CA346641BA69D4C00CC914A /* SetThemeCell.swift in Sources */,
 				8C783B441BA1E10E00EEE28B /* DldSongListTableViewController.swift in Sources */,
-				8C3149481BA03DBC00E115F0 /* DownloadSong+CoreDataProperties.swift in Sources */,
 				8C31EF3F1B9C56FB00862996 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

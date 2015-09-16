@@ -34,10 +34,10 @@ class CoreDataHelper: NSObject {
     }
     
     
-    //按标题查询喜欢歌曲
-    func searchSongWithTitle(title:String) -> Song{
+    //按ID查询喜欢歌曲
+    func searchSongWithID(id:String) -> Song{
         let fr = NSFetchRequest(entityName: "Song")
-        let predicate = NSPredicate(format: "title == %@", title)
+        let predicate = NSPredicate(format: "id == %@", id)
         fr.predicate = predicate
         let result = try! context.executeFetchRequest(fr) as! [Song]
         return result[0]
@@ -55,9 +55,9 @@ class CoreDataHelper: NSObject {
     :returns: 返回歌曲数
     */
     
-    func searchSongCountWithName(name:String) -> Int{
+    func searchSongCountWithID(id:String) -> Int{
         let fr = NSFetchRequest(entityName: "Song")
-        let predicate = NSPredicate(format: "title == %@", name)
+        let predicate = NSPredicate(format: "id == %@", id)
         fr.predicate = predicate
         let result = context.countForFetchRequest(fr, error: nil)
         
@@ -76,8 +76,8 @@ class CoreDataHelper: NSObject {
     :param: albumtitle 专辑名
     :param: publicTime 发行时间
     */
-    func saveLoveSong(title:String,artist:String,url:String,picURL:String,albumtitle:String,publicTime:String,imageData:NSData)->Bool{
-        if searchSongCountWithName(title) == 0{
+    func saveLoveSong(id:String,title:String,artist:String,url:String,picURL:String,albumtitle:String,publicTime:String?,imageData:NSData)->Bool{
+        if searchSongCountWithID(id) == 0{
             let entity = NSEntityDescription.entityForName("Song", inManagedObjectContext: self.context)
             let song = Song(entity: entity!, insertIntoManagedObjectContext: self.context)
             song.title = title
@@ -89,6 +89,7 @@ class CoreDataHelper: NSObject {
             song.public_time = publicTime
             song.image = imageData
             song.play_count = NSNumber(int: 0)
+            song.id = id
             print("保存成功")
             appDelegate.saveContext()
             return true
@@ -101,8 +102,8 @@ class CoreDataHelper: NSObject {
     
     //红心歌曲播放次数加1
     
-    func loveSongPlayCountAdd(title:String){
-        let song  = searchSongWithTitle(title)
+    func loveSongPlayCountAdd(id:String){
+        let song  = searchSongWithID(id)
         let count = song.play_count?.intValue
         song.play_count = NSNumber(int: count! + 1)
         
@@ -119,8 +120,8 @@ class CoreDataHelper: NSObject {
     
     // 保存下载歌曲
     
-    func saveDldSong(title:String,artist:String,album:String,image:NSData,song:NSData){
-        if seachDldSongWithTitle(title) == 0{
+    func saveDldSong(id:String,title:String,artist:String,album:String,image:NSData,song:NSData){
+        if seachDldSongWithID(id) == 0{
             let entity = NSEntityDescription.entityForName("DownloadSong", inManagedObjectContext: context)
             let dldSong = DownloadSong(entity: entity!, insertIntoManagedObjectContext: context)
             dldSong.title = title
@@ -128,7 +129,7 @@ class CoreDataHelper: NSObject {
             dldSong.album = album
             dldSong.image = image
             dldSong.song = song
-            
+            dldSong.id = id
             appDelegate.saveContext()
         }else{
             print("这首歌已下载")
@@ -136,10 +137,10 @@ class CoreDataHelper: NSObject {
         
     }
     
-    //查询下载歌曲
-    func seachDldSongWithTitle(title:String) -> Int{
+    //按ID查询下载歌曲数
+    func seachDldSongWithID(title:String) -> Int{
         let fr = NSFetchRequest(entityName: "DownloadSong")
-        fr.predicate = NSPredicate(format: "title == %@", title)
+        fr.predicate = NSPredicate(format: "id == %@", title)
         let count = context.countForFetchRequest(fr, error: nil)
         return count
     }
@@ -150,10 +151,10 @@ class CoreDataHelper: NSObject {
         let result = try! context.executeFetchRequest(fr) as! [DownloadSong]
         return result
     }
-    //按标题查询下载的歌曲
-    func seachTheDldSongWithTitle(title:String) -> DownloadSong{
+    //按ID查询下载的歌曲
+    func seachTheDldSongWithID(id:String) -> DownloadSong{
         let fr = NSFetchRequest(entityName: "DownloadSong")
-        let predicate = NSPredicate(format: "title == %@", title)
+        let predicate = NSPredicate(format: "id == %@", id)
         
         
         fr.predicate = predicate
@@ -173,8 +174,8 @@ class CoreDataHelper: NSObject {
     }
     
     
-    func removeLoveSongWithTitle(title:String){
-        let song = searchSongWithTitle(title)
+    func removeLoveSongWithID(id:String){
+        let song = searchSongWithID(id)
         context.deleteObject(song)
         appDelegate.saveContext()
     }
@@ -195,8 +196,8 @@ class CoreDataHelper: NSObject {
     
     //删除下载歌曲
     
-    func removeDldSongWithTitle(title:String){
-        let song = seachTheDldSongWithTitle(title)
+    func removeDldSongWithID(id:String){
+        let song = seachTheDldSongWithID(id)
         context.deleteObject(song)
         self.appDelegate.saveContext()
     }

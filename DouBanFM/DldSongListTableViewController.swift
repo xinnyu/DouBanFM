@@ -16,14 +16,11 @@ class DldSongListTableViewController: UITableViewController,UIGestureRecognizerD
     
     var coreDataHelper:CoreDataHelper = CoreDataHelper()
     
+    var currentSongID:String!
+    
     @IBOutlet var animationBtn: UIBarButtonItem!
     
-    @IBAction func backBtnClick(sender: UIBarButtonItem) {
-        
-        
-        self.navigationController?.popViewControllerAnimated(true)
-        
-    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -35,6 +32,8 @@ class DldSongListTableViewController: UITableViewController,UIGestureRecognizerD
         
         configureAnimationBtn()
         setFootView()
+        self.navigationController?.navigationBar.tintColor = UIColor.blackColor()
+        self.navigationController?.navigationItem.backBarButtonItem?.title = " "
         
     }
     
@@ -54,6 +53,7 @@ class DldSongListTableViewController: UITableViewController,UIGestureRecognizerD
     }
 
     func singleClick(){
+        isFromDld = false
         dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -79,16 +79,36 @@ class DldSongListTableViewController: UITableViewController,UIGestureRecognizerD
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("dldCell", forIndexPath: indexPath) as! DldSongListCell
+        cell.markImage.hidden = true
         cell.numLabel.text = "\(indexPath.row + 1)"
         cell.titleLabel.text = dldSongs![indexPath.row].title
         cell.artistLabel.text = dldSongs![indexPath.row].artist
+        
+        
+        self.dldSongs = DldSongsHelper.shareDldSongs().dldSongs
+        let id  = dldSongs![indexPath.row].id
+        
+        if id == currentSongID{
+            let image = UIImage(named: "cm2_discover_icn_idol")
+            let image1 = image?.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+            cell.markImage.image = image1
+            if color != UIColor(red:0.97, green:0.97, blue:0.97, alpha:1){
+                cell.markImage.tintColor = color
+            }
+            cell.numLabel.hidden = true
+            cell.markImage.hidden = false
+            
+        }else{
+            cell.numLabel.hidden = false
+            cell.markImage.hidden = true
+        }
 
         return cell
     }
     
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 50
+        return 55
     }
     
     
@@ -96,7 +116,7 @@ class DldSongListTableViewController: UITableViewController,UIGestureRecognizerD
         
         isPlayOffline = true
         isFromDld = true
-        print(self.dldSongs![indexPath.row].title)
+        
         
         let song = CurrentDataSong.shareCurrentDataSong()
         song.song = dldSongs![indexPath.row]
@@ -109,7 +129,10 @@ class DldSongListTableViewController: UITableViewController,UIGestureRecognizerD
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
+        //let cell = tableView.dequeueReusableCellWithIdentifier("dldCell", forIndexPath: indexPath) as! DldSongListCell
+        
         return true
+        
     }
     
 
@@ -118,11 +141,13 @@ class DldSongListTableViewController: UITableViewController,UIGestureRecognizerD
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             self.dldSongs = DldSongsHelper.shareDldSongs().dldSongs
+            
+            let id = self.dldSongs![indexPath.row].id
+            
             self.dldSongs!.removeAtIndex(indexPath.row)
             
-            let cell = tableView.cellForRowAtIndexPath(indexPath) as! DldSongListCell
-            let title = cell.titleLabel.text
-            self.coreDataHelper.removeDldSongWithTitle(title!)
+            
+            self.coreDataHelper.removeDldSongWithID(id!)
             
             
             
