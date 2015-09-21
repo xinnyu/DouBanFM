@@ -598,12 +598,11 @@ class ViewController: UIViewController ,PassURLDelegate,NetWorkStarkDelegate,UIG
             }
             
         }
-        print("播放完了")
     }
     
     
     func audioPlayerDidFinishPlaying(player: AVAudioPlayer, successfully flag: Bool) {
-        print("播放完了")
+        
         if isPlayOffline{
             if isRepeatPlay {
                 player.stop()
@@ -795,9 +794,6 @@ extension ViewController{
     func singleClick(){
         self.detailBlurView.hidden = false
     }
-    
-    
-    
     
 }
 
