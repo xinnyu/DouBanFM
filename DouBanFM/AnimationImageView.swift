@@ -11,8 +11,7 @@ import UIKit
 class AnimationImageView{
 
     
-    class func shareAnimationImageView() -> UIImageView{
-        dispatch_once(&singleTon.once_t) { () -> Void in
+    private static var __once: () = { () -> Void in
             singleTon.animationImageView = UIImageView(image: UIImage(named: "cm2_top_icn_playing_prs")!)
             singleTon.animationImageView.animationImages = [UIImage(named: "cm2_top_icn_playing_prs")!,
                 UIImage(named: "cm2_top_icn_playing2_prs")!,
@@ -23,12 +22,16 @@ class AnimationImageView{
             singleTon.animationImageView.animationDuration = 1.5
             
             
-        }
+        }()
+
+    
+    class func shareAnimationImageView() -> UIImageView{
+        _ = AnimationImageView.__once
         return singleTon.animationImageView
     }
     
     struct singleTon {
         static var animationImageView:UIImageView!
-        static var once_t:dispatch_once_t = 0
+        static var once_t:Int = 0
     }
 }

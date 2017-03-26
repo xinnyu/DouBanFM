@@ -27,12 +27,12 @@ class SongListCell: UITableViewCell {
     }
     
     
-    @IBAction func dldBtnClick(sender: UIButton) {
+    @IBAction func dldBtnClick(_ sender: UIButton) {
         print(sender.tag)
     }
     
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state UIColor(red:0.94, green:0.94, blue:0.96, alpha:1)

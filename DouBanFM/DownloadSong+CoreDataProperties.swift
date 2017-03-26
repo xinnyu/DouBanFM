@@ -16,8 +16,8 @@ extension DownloadSong {
 
     @NSManaged var album: String?
     @NSManaged var artist: String?
-    @NSManaged var image: NSData?
-    @NSManaged var song: NSData?
+    @NSManaged var image: Data?
+    @NSManaged var song: Data?
     @NSManaged var title: String?
     @NSManaged var id: String?
 

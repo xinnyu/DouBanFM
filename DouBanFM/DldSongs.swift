@@ -10,20 +10,22 @@ import UIKit
 
 class DldSongsHelper: NSObject {
     
+    private static var __once: () = { () -> Void in
+            singleTon.dldSongs = DldSongsHelper()
+        }()
+    
     let coreDataHelper = CoreDataHelper()
     
     var dldSongsID:Set<String> = []
     
     class func shareDldSongs() -> DldSongsHelper {
-        dispatch_once(&singleTon.once_t) { () -> Void in
-            singleTon.dldSongs = DldSongsHelper()
-        }
+        _ = DldSongsHelper.__once
         return singleTon.dldSongs!
     }
     
     struct singleTon {
         static var dldSongs:DldSongsHelper?
-        static var once_t:dispatch_once_t = 0
+        static var once_t:Int = 0
     }
     
     var dldSongs:[DownloadSong]{

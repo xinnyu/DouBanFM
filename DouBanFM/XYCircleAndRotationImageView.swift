@@ -36,24 +36,24 @@ class XYCircleAndRotationImageView: UIImageView {
     func startRotation(){
         
         //rotation.fromValue = 0
-        rotation.toValue = M_PI * 2
-        rotation.duration = 10
-        rotation.repeatForever = true
-        rotation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
+        rotation?.toValue = M_PI * 2
+        rotation?.duration = 10
+        rotation?.repeatForever = true
+        rotation?.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
         
         
         
-        self.layer.pop_addAnimation(rotation, forKey: "旋转")
+        self.layer.pop_add(rotation, forKey: "旋转")
     }
     
     func stopRotation(){
         
-        rotation.paused = true
+        rotation?.isPaused = true
         
     }
     
     func resumeRotation(){
-        rotation.paused = false
+        rotation?.isPaused = false
     }
     
     // MARK: - CoreAnimation相关方法
@@ -65,13 +65,13 @@ class XYCircleAndRotationImageView: UIImageView {
         CASrotation.toValue = M_PI * 2
         CASrotation.repeatCount = MAXFLOAT
         
-        self.layer.addAnimation(CASrotation, forKey: "rotation10")
+        self.layer.add(CASrotation, forKey: "rotation10")
         
     }
     
     func CAStopRotation(){
         // 取出当前的时间点，就是暂停的时间点
-        let pauseTime = self.layer.convertTime(CACurrentMediaTime(), fromLayer: nil)
+        let pauseTime = self.layer.convertTime(CACurrentMediaTime(), from: nil)
         // 将速度设为0
         self.layer.speed = 0.0
         // 设定时间偏移量，让动画定格在那个时间点
@@ -84,7 +84,7 @@ class XYCircleAndRotationImageView: UIImageView {
         self.layer.speed = 1.0
         self.layer.timeOffset = 0
         self.layer.beginTime = 0
-        let sincePauseTime = self.layer.convertTime(CACurrentMediaTime(), fromLayer: nil) - pauseTime
+        let sincePauseTime = self.layer.convertTime(CACurrentMediaTime(), from: nil) - pauseTime
         self.layer.beginTime = sincePauseTime
     }
     

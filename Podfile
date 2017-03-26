@@ -1,14 +1,15 @@
-source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '8.0'
+platform :ios, '10.0'
 use_frameworks!
 
-pod 'Alamofire', '~> 2.0'
+target 'DouBanFM' do
+    pod 'Alamofire'
 
-pod 'MJRefresh'
+    pod 'MJRefresh'
 
-pod 'pop', '~> 1.0'
+    pod 'pop'
+    pod 'SwiftyJSON'
 
+    pod 'BTNavigationDropdownMenu', :git => 'https://github.com/PhamBaTho/BTNavigationDropdownMenu.git', :branch => 'swift-3.0'
 
-pod 'BTNavigationDropdownMenu'
-
-pod 'HCSStarRatingView', '~> 1.4.2'
+    pod 'HCSStarRatingView'
+end

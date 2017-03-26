@@ -15,14 +15,15 @@ class NetWorkStark:NSObject{
     var alert:UIAlertController?
     
     
-    func getResult(url:String){
+    func getResult(_ url:String){
         
-        Alamofire.request(.GET, url).response { (_, _, data, err) -> Void in
-            if err == nil{
-                self.delegate?.didGetResult(data!)
+        
+        Alamofire.request(url).responseData { (data) in
+            if data.error == nil{
+                self.delegate?.didGetResult(data.data!)
             }else{
-                print("网络请求错误：" + err.debugDescription)
-                self.delegate?.didGetError(err)
+                print("网络请求错误：" + data.error.debugDescription)
+                self.delegate?.didGetError(data.error)
             }
         }
     }
@@ -38,6 +39,6 @@ class NetWorkStark:NSObject{
 
 
 protocol NetWorkStarkDelegate{
-    func didGetResult(data:NSData)
-    func didGetError(err:ErrorType?)
+    func didGetResult(_ data:Data)
+    func didGetError(_ err:Error?)
 }

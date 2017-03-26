@@ -1,22 +1,37 @@
 PODS:
-  - Alamofire (2.0.0)
-  - BTNavigationDropdownMenu (0.1.7)
-  - HCSStarRatingView (1.4.2)
-  - MJRefresh (2.4.9)
-  - pop (1.0.7)
+  - Alamofire (4.4.0)
+  - BTNavigationDropdownMenu (0.4.1)
+  - HCSStarRatingView (1.5)
+  - MJRefresh (3.1.12)
+  - pop (1.0.9)
+  - SwiftyJSON (3.1.4)
 
 DEPENDENCIES:
-  - Alamofire (~> 2.0)
-  - BTNavigationDropdownMenu
-  - HCSStarRatingView (~> 1.4.2)
+  - Alamofire
+  - BTNavigationDropdownMenu (from `https://github.com/PhamBaTho/BTNavigationDropdownMenu.git`, branch `swift-3.0`)
+  - HCSStarRatingView
   - MJRefresh
-  - pop (~> 1.0)
+  - pop
+  - SwiftyJSON
+
+EXTERNAL SOURCES:
+  BTNavigationDropdownMenu:
+    :branch: swift-3.0
+    :git: https://github.com/PhamBaTho/BTNavigationDropdownMenu.git
+
+CHECKOUT OPTIONS:
+  BTNavigationDropdownMenu:
+    :commit: 2c08c8579cf7a53ecb3dbf578e6e1034080a9859
+    :git: https://github.com/PhamBaTho/BTNavigationDropdownMenu.git
 
 SPEC CHECKSUMS:
-  Alamofire: 2f13548b29d25a58ecd91c9225fb51493e2b782b
-  BTNavigationDropdownMenu: b504a1e9c93107d1d08b9bc6d543526d9977f980
-  HCSStarRatingView: 6157471eff9fe3ec7240e131a5b0aba39f097e57
-  MJRefresh: be84acb912d0a66364f76a75426698a39528e2ed
-  pop: 628ffc631644601567ee8bfaaaea493ebd7d0923
+  Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
+  BTNavigationDropdownMenu: 093f3cbfad1572f2c222bdf8d17584d1e13380d4
+  HCSStarRatingView: 1d18f79654735514cd6f00e6d90e38cb6320dc31
+  MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
+  pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
+  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-COCOAPODS: 0.38.2
+PODFILE CHECKSUM: 67d3767fc7c9d8583a9da5be8aa60ff20be8d644
+
+COCOAPODS: 1.2.0

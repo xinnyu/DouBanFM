@@ -10,15 +10,15 @@ import Foundation
 
 
 protocol PassURLDelegate{
-    func didGetURL(url:String)
+    func didGetURL(_ url:String)
 }
 
 
 protocol PassSongDetailDelegate{
-    func didGetDetail(song:Song)
+    func didGetDetail(_ song:Song)
 }
 
 
 protocol PassDldSongDelegate{
-    func didGetDldSong(song:DownloadSong,isPlayOnline:Bool)
+    func didGetDldSong(_ song:DownloadSong,isPlayOnline:Bool)
 }

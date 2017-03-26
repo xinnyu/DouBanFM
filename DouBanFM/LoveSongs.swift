@@ -10,16 +10,18 @@ import UIKit
 
 class LoveSongsHelper: NSObject {
     
-    class func shareLoveSong() -> LoveSongsHelper{
-        dispatch_once(&singleTon.once_t) { () -> Void in
+    private static var __once: () = { () -> Void in
             singleTon.loveSong = LoveSongsHelper()
-        }
+        }()
+    
+    class func shareLoveSong() -> LoveSongsHelper{
+        _ = LoveSongsHelper.__once
         return singleTon.loveSong
     }
     
     struct singleTon {
         static var loveSong:LoveSongsHelper!
-        static var once_t:dispatch_once_t = 0
+        static var once_t:Int = 0
     }
     
     

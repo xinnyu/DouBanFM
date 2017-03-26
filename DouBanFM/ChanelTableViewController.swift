@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import MJRefresh
+import SwiftyJSON
 
 class ChanelTableViewController: UITableViewController, NetWorkStarkDelegate ,UINavigationControllerDelegate {
     
@@ -31,7 +32,7 @@ class ChanelTableViewController: UITableViewController, NetWorkStarkDelegate ,UI
     var delegate:PassURLDelegate?
     
     //定义一个NSFetchedResultsController实例
-    var fetchedResultsController:NSFetchedResultsController?
+    var fetchedResultsController:NSFetchedResultsController<NSFetchRequestResult>?
 
     @IBOutlet var backBtn: UIBarButtonItem!
     
@@ -40,7 +41,7 @@ class ChanelTableViewController: UITableViewController, NetWorkStarkDelegate ,UI
     
     // MARK: - 配置MJRefresh
     func configureMJRefresh(){
-        self.tableView.header = MJRefreshNormalHeader(refreshingBlock: { () -> Void in
+        self.tableView.mj_header = MJRefreshNormalHeader(refreshingBlock: { () -> Void in
             self.netWorkStack.getResult(self.chanelsURL)
         })
     }
@@ -54,24 +55,24 @@ class ChanelTableViewController: UITableViewController, NetWorkStarkDelegate ,UI
         getChanelFromCoreData()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         isFromDld = false
         let cells = tableView.visibleCells
         for cell in cells{
-            cell.transform = CGAffineTransformMakeTranslation( UIScreen.mainScreen().bounds.size.width, 0)
+            cell.transform = CGAffineTransform( translationX: UIScreen.main.bounds.size.width, y: 0)
         }
         
         for i in 0 ..< cells.count{
-            UIView.animateWithDuration(0.3, delay: Double(i) * 0.1, usingSpringWithDamping: 14, initialSpringVelocity: 1, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
-                cells[i].transform = CGAffineTransformMakeTranslation( 0, 0)
+            UIView.animate(withDuration: 0.3, delay: Double(i) * 0.1, usingSpringWithDamping: 14, initialSpringVelocity: 1, options: UIViewAnimationOptions(), animations: { () -> Void in
+                cells[i].transform = CGAffineTransform( translationX: 0, y: 0)
                 }, completion: nil)
         }
         
         
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         
     }
     
@@ -80,8 +81,8 @@ class ChanelTableViewController: UITableViewController, NetWorkStarkDelegate ,UI
     // MARK: - 从CoreData中获取频道数据
     func getChanelFromCoreData(){
         let context = appDelegate.managedObjectContext
-        let fr = NSFetchRequest(entityName: "Chanel")
-        if let result = try! context.executeFetchRequest(fr) as? [Chanel] {
+        let fr = NSFetchRequest<NSFetchRequestResult>(entityName: "Chanel")
+        if let result = try! context.fetch(fr) as? [Chanel] {
             chanels = result
             self.tableView.reloadData()
         }
@@ -93,20 +94,20 @@ class ChanelTableViewController: UITableViewController, NetWorkStarkDelegate ,UI
     
     // MARK: - NetWorkStarkDelegate
     
-    func didGetResult(data: NSData) {
+    func didGetResult(_ data: Data) {
         removeAllChanelsToCoreData()
         let context = appDelegate.managedObjectContext
-        let entity = NSEntityDescription.entityForName("Chanel", inManagedObjectContext: context)
-        if let jsonDic = try! NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments) as? NSDictionary {
+        let entity = NSEntityDescription.entity(forEntityName: "Chanel", in: context)
+        if let jsonDic = try! JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as? NSDictionary {
             print(jsonDic)
             let json = JSON(jsonDic)
             let chanelArray = json["channels"].array
             for chanel in chanelArray! {
                 let name = chanel["name"].string
-                let chanel = Chanel(entity: entity!, insertIntoManagedObjectContext: context)
+                let chanel = Chanel(entity: entity!, insertInto: context)
                 chanel.name = name
                 appDelegate.saveContext()
-                self.tableView.header.endRefreshing()
+                self.tableView.mj_header.endRefreshing()
                 self.getChanelFromCoreData()
             }
             
@@ -115,7 +116,7 @@ class ChanelTableViewController: UITableViewController, NetWorkStarkDelegate ,UI
         }
     }
     
-    func didGetError(err: ErrorType?) {
+    func didGetError(_ err: Error?) {
         ProgressHUD.showError("网络连接错误，可以播放已下载的歌曲", interaction: true)
     }
     
@@ -127,12 +128,12 @@ class ChanelTableViewController: UITableViewController, NetWorkStarkDelegate ,UI
     //删除CoreData中的所有数据
     func removeAllChanelsToCoreData(){
         let context = appDelegate.managedObjectContext
-        let fq = NSFetchRequest(entityName: "Chanel")
+        let fq = NSFetchRequest<NSFetchRequestResult>(entityName: "Chanel")
 
-        if let result = try! context.executeFetchRequest(fq) as? [Chanel]{
+        if let result = try! context.fetch(fq) as? [Chanel]{
             if result.count != 0 {
                 for r in result{
-                    context.deleteObject(r)
+                    context.delete(r)
                 }
 //                let chanel = Chanel(entity: entity!, insertIntoManagedObjectContext: context)
 //                chanel.name = name
@@ -150,14 +151,14 @@ class ChanelTableViewController: UITableViewController, NetWorkStarkDelegate ,UI
 
 
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return chanels.count
     }
 
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("myCell", forIndexPath: indexPath)
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath)
 
         cell.textLabel?.text = chanels[indexPath.row].name
 
@@ -166,7 +167,7 @@ class ChanelTableViewController: UITableViewController, NetWorkStarkDelegate ,UI
     
     // MARK: - Table view delegate
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.songsURL = "http://douban.fm/j/mine/playlist?type=n&channel=\(indexPath.row)&from=mainsite"
         delegate?.didGetURL(self.songsURL)
         
@@ -174,14 +175,14 @@ class ChanelTableViewController: UITableViewController, NetWorkStarkDelegate ,UI
         isPlayOffline = false
         isRandomPlayOnline = false
         isRandomPlayOffline = false
-        self.navigationController?.popViewControllerAnimated(true)
+        self.navigationController?.popViewController(animated: true)
     }
 
 
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         isFromDld = false
         

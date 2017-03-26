@@ -32,7 +32,7 @@ class DldSongListTableViewController: UITableViewController,UIGestureRecognizerD
         
         configureAnimationBtn()
         setFootView()
-        self.navigationController?.navigationBar.tintColor = UIColor.blackColor()
+        self.navigationController?.navigationBar.tintColor = UIColor.black
         self.navigationController?.navigationItem.backBarButtonItem?.title = " "
         
     }
@@ -44,7 +44,7 @@ class DldSongListTableViewController: UITableViewController,UIGestureRecognizerD
 
     func configureAnimationBtn(){
         animationBtn.customView = AnimationImageView.shareAnimationImageView()
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "singleClick")
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(DldSongListTableViewController.singleClick))
         tapGestureRecognizer.numberOfTapsRequired = 1
         tapGestureRecognizer.numberOfTouchesRequired = 1
         tapGestureRecognizer.delegate = self
@@ -54,7 +54,7 @@ class DldSongListTableViewController: UITableViewController,UIGestureRecognizerD
 
     func singleClick(){
         isFromDld = false
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
     
 
@@ -65,21 +65,21 @@ class DldSongListTableViewController: UITableViewController,UIGestureRecognizerD
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return dldSongs!.count
     }
 
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("dldCell", forIndexPath: indexPath) as! DldSongListCell
-        cell.markImage.hidden = true
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "dldCell", for: indexPath) as! DldSongListCell
+        cell.markImage.isHidden = true
         cell.numLabel.text = "\(indexPath.row + 1)"
         cell.titleLabel.text = dldSongs![indexPath.row].title
         cell.artistLabel.text = dldSongs![indexPath.row].artist
@@ -90,29 +90,29 @@ class DldSongListTableViewController: UITableViewController,UIGestureRecognizerD
         
         if id == currentSongID{
             let image = UIImage(named: "cm2_discover_icn_idol")
-            let image1 = image?.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+            let image1 = image?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
             cell.markImage.image = image1
             if color != UIColor(red:0.97, green:0.97, blue:0.97, alpha:1){
                 cell.markImage.tintColor = color
             }
-            cell.numLabel.hidden = true
-            cell.markImage.hidden = false
+            cell.numLabel.isHidden = true
+            cell.markImage.isHidden = false
             
         }else{
-            cell.numLabel.hidden = false
-            cell.markImage.hidden = true
+            cell.numLabel.isHidden = false
+            cell.markImage.isHidden = true
         }
 
         return cell
     }
     
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 55
     }
     
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         isPlayOffline = true
         isFromDld = true
@@ -122,12 +122,12 @@ class DldSongListTableViewController: UITableViewController,UIGestureRecognizerD
         song.song = dldSongs![indexPath.row]
         song.index = indexPath.row
         
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
 
     
     // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
         //let cell = tableView.dequeueReusableCellWithIdentifier("dldCell", forIndexPath: indexPath) as! DldSongListCell
         
@@ -138,23 +138,23 @@ class DldSongListTableViewController: UITableViewController,UIGestureRecognizerD
 
     
     // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
             self.dldSongs = DldSongsHelper.shareDldSongs().dldSongs
             
             let id = self.dldSongs![indexPath.row].id
             
-            self.dldSongs!.removeAtIndex(indexPath.row)
+            self.dldSongs!.remove(at: indexPath.row)
             
             
             self.coreDataHelper.removeDldSongWithID(id!)
             
             
             
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            tableView.deleteRows(at: [indexPath], with: .fade)
             tableView.reloadData()
             
-        } else if editingStyle == .Insert {
+        } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }

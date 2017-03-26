@@ -41,22 +41,22 @@ class SetTableViewController: UITableViewController {
     }
     
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.barTintColor = color
     }
 
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0 && indexPath.section == 1{
             //清除缓存
             
-            let alert = UIAlertController(title: "清除缓存", message: "这个操作会删除掉所有已下载的歌曲和喜欢的歌曲", preferredStyle: UIAlertControllerStyle.Alert)
-            alert.addAction(UIAlertAction(title: "确认删除", style: UIAlertActionStyle.Default, handler: { (alert:UIAlertAction) -> Void in
+            let alert = UIAlertController(title: "清除缓存", message: "这个操作会删除掉所有已下载的歌曲和喜欢的歌曲", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "确认删除", style: UIAlertActionStyle.default, handler: { (alert:UIAlertAction) -> Void in
                 self.coreDataHelper.removeAllDldSong()
                 self.coreDataHelper.removeAllLoveSong()
             }))
-            alert.addAction(UIAlertAction(title: "取消", style: .Cancel, handler: nil))
-            presentViewController(alert, animated: true, completion: nil)
+            alert.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))
+            present(alert, animated: true, completion: nil)
         }
     }
     
@@ -66,42 +66,42 @@ class SetTableViewController: UITableViewController {
 
 
 
-    @IBAction func doneBtnClick(sender: UIBarButtonItem) {
+    @IBAction func doneBtnClick(_ sender: UIBarButtonItem) {
         
         isFromDld = false
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
     
     
-    @IBAction func whiteBtnClick(sender: UIButton) {
+    @IBAction func whiteBtnClick(_ sender: UIButton) {
         
         color = UIColor(red:0.97, green:0.97, blue:0.97, alpha:1)
         
-        self.navigationController?.navigationBar.barStyle = UIBarStyle.Default
+        self.navigationController?.navigationBar.barStyle = UIBarStyle.default
         
         
     }
     
-    @IBAction func yellowBtnClick(sender: UIButton) {
+    @IBAction func yellowBtnClick(_ sender: UIButton) {
         
         color = UIColor(red:1, green:0.8, blue:0.4, alpha:1)
-        UIView.animateWithDuration(4) { () -> Void in
+        UIView.animate(withDuration: 4, animations: { () -> Void in
             self.navigationController?.navigationBar.barTintColor = color
-        }
+        }) 
         
     }
     
-    @IBAction func blueBtnClick(sender: UIButton) {
+    @IBAction func blueBtnClick(_ sender: UIButton) {
         color = UIColor(red:0.4, green:0.8, blue:1, alpha:1)
-        UIView.animateWithDuration(4) { () -> Void in
+        UIView.animate(withDuration: 4, animations: { () -> Void in
             self.navigationController?.navigationBar.barTintColor = color
-        }
+        }) 
     }
-    @IBAction func greenBtnClick(sender: UIButton) {
+    @IBAction func greenBtnClick(_ sender: UIButton) {
         color = UIColor(red:0.4, green:1, blue:0.8, alpha:1)
-        UIView.animateWithDuration(4) { () -> Void in
+        UIView.animate(withDuration: 4, animations: { () -> Void in
             self.navigationController?.navigationBar.barTintColor = color
-        }
+        }) 
     }
 
 }

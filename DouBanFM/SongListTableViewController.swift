@@ -45,9 +45,9 @@ class SongListTableViewController: UITableViewController, UIGestureRecognizerDel
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        self.navigationItem.leftBarButtonItem = self.editButtonItem()
+        self.navigationItem.leftBarButtonItem = self.editButtonItem
         
-        self.editButtonItem().tintColor = UIColor.blackColor()
+        self.editButtonItem.tintColor = UIColor.black
         
         self.backBtn.customView = AnimationImageView.shareAnimationImageView()
         
@@ -87,7 +87,7 @@ class SongListTableViewController: UITableViewController, UIGestureRecognizerDel
     //为跳动View添加点击事件
     
     func addSingleFingerOneClick(){
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "singleClick")
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(SongListTableViewController.singleClick))
         tapGestureRecognizer.numberOfTapsRequired = 1
         tapGestureRecognizer.numberOfTouchesRequired = 1
         tapGestureRecognizer.delegate = self
@@ -96,14 +96,14 @@ class SongListTableViewController: UITableViewController, UIGestureRecognizerDel
     
     func singleClick(){
         isFromDld = false
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
     
     
     
     
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         addSingleFingerOneClick()
         self.navigationController?.navigationBar.barTintColor = color
@@ -116,17 +116,17 @@ class SongListTableViewController: UITableViewController, UIGestureRecognizerDel
 
     // MARK: - Table view data source
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
 
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 55
     }
 
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         if section == 1{
             return loveSongArray.count
@@ -140,15 +140,15 @@ class SongListTableViewController: UITableViewController, UIGestureRecognizerDel
     
 
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         if indexPath.section == 0{
-            let dldCell = tableView.dequeueReusableCellWithIdentifier("dldMusicCell", forIndexPath: indexPath)
+            let dldCell = tableView.dequeueReusableCell(withIdentifier: "dldMusicCell", for: indexPath)
             dldCell.detailTextLabel?.text = "\(self.dldSongArray.count)首"
             return dldCell
         }else{
-            let cell = tableView.dequeueReusableCellWithIdentifier("myCell", forIndexPath: indexPath) as! SongListCell
-            cell.songImage.image = UIImage(data: loveSongArray[indexPath.row].image!)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath) as! SongListCell
+            cell.songImage.image = UIImage(data: loveSongArray[indexPath.row].image! as Data)
             cell.songNameLabel.text = loveSongArray[indexPath.row].title
             cell.artistNameLabel.text = loveSongArray[indexPath.row].artist! + " - " + loveSongArray[indexPath.row].albumtitle!
             cell.dldBtn.tag = indexPath.row
@@ -158,10 +158,10 @@ class SongListTableViewController: UITableViewController, UIGestureRecognizerDel
             let id = song.id
             
             if id == self.currentSongID {
-                cell.playMask.hidden = false
+                cell.playMask.isHidden = false
                 
                 let image = UIImage(named: "cm2_discover_icn_idol")
-                let image1 = image?.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+                let image1 = image?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
                 cell.playMask.image = image1
                 
                 if color != UIColor(red:0.97, green:0.97, blue:0.97, alpha:1){
@@ -178,33 +178,33 @@ class SongListTableViewController: UITableViewController, UIGestureRecognizerDel
                 
 //                cell.playMask.startAnimating()
             }else{
-                cell.playMask.hidden = true
+                cell.playMask.isHidden = true
             }
             
             if self.dldSongsID.contains(id!) {
-                cell.dldBtn.setImage(UIImage(named: "cm2_icn_dlded"), forState: UIControlState.Normal)
-                cell.dldBtn.enabled = false
+                cell.dldBtn.setImage(UIImage(named: "cm2_icn_dlded"), for: UIControlState())
+                cell.dldBtn.isEnabled = false
             }else{
-                cell.dldBtn.setImage(UIImage(named: "cm2_icn_dld"), forState: UIControlState.Normal)
-                cell.dldBtn.enabled = true
+                cell.dldBtn.setImage(UIImage(named: "cm2_icn_dld"), for: UIControlState())
+                cell.dldBtn.isEnabled = true
             }
             
-            cell.dldBtn.addTarget(self, action: "dldBtnClick:", forControlEvents: UIControlEvents.TouchUpInside)
+            cell.dldBtn.addTarget(self, action: #selector(SongListTableViewController.dldBtnClick(_:)), for: UIControlEvents.touchUpInside)
             return cell
         }
         
     }
     
     
-    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 1{
-            let view = UIView(frame: CGRectMake(0, 0, self.view.frame.width, 26))
-            let label = UILabel(frame: CGRectMake(8, 3, self.view.frame.width - 8, 20))
+            let view = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 26))
+            let label = UILabel(frame: CGRect(x: 8, y: 3, width: self.view.frame.width - 8, height: 20))
             view.backgroundColor = color
             label.text = "我喜欢的音乐(\(self.loveSongArray.count))"
             view.alpha = 0.5
             
-            label.font = UIFont.systemFontOfSize(12)
+            label.font = UIFont.systemFont(ofSize: 12)
             view.addSubview(label)
             return view
         }else{
@@ -213,7 +213,7 @@ class SongListTableViewController: UITableViewController, UIGestureRecognizerDel
     }
     
     
-    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 1{
             return 26
         }else{
@@ -225,19 +225,19 @@ class SongListTableViewController: UITableViewController, UIGestureRecognizerDel
     
     
     //下载按钮动作
-    func dldBtnClick(sender:UIButton){
+    func dldBtnClick(_ sender:UIButton){
         print("\(sender.tag)")
         self.noticeTop("已加入下载", autoClear: true)
         self.loveSongArray = LoveSongsHelper.shareLoveSong().loveSongs
         let song = loveSongArray[sender.tag]
         let url = song.url
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { () -> Void in
-            let songData = NSData(contentsOfURL: NSURL(string: url!)!)!
+        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async { () -> Void in
+            let songData = try! Data(contentsOf: URL(string: url!)!)
             self.coreDataHelper.saveDldSong(song.id!,title: song.title!, artist: song.artist!, album: song.albumtitle!, image: song.image!, song: songData)
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            DispatchQueue.main.async(execute: { () -> Void in
                 self.successNotice("下载完成", autoClear: true)
-                sender.setImage(UIImage(named: "cm2_icn_dlded"), forState: UIControlState.Normal)
-                sender.enabled = false
+                sender.setImage(UIImage(named: "cm2_icn_dlded"), for: UIControlState())
+                sender.isEnabled = false
                 self.dldSongArray = self.dldSongHelper.dldSongs
                 self.dldSongsID = self.dldSongHelper.dldSongsID
                 self.tableView.reloadData()
@@ -246,7 +246,7 @@ class SongListTableViewController: UITableViewController, UIGestureRecognizerDel
     }
 
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         
         if indexPath.section == 1{
@@ -259,26 +259,26 @@ class SongListTableViewController: UITableViewController, UIGestureRecognizerDel
             if id == currentSongID {
                 isFromDld = false
                 isPlayOffline = false
-                dismissViewControllerAnimated(true, completion: nil)
+                dismiss(animated: true, completion: nil)
             }else{
                 isFromDld = false
                 isPlayOffline = false
-                self.dismissViewControllerAnimated(true, completion: nil)
+                self.dismiss(animated: true, completion: nil)
                 passDetailDelegate?.didGetDetail(loveSongArray[indexPath.row])
             }
             
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { () -> Void in
+            DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async(execute: { () -> Void in
                 self.coreDataHelper.loveSongPlayCountAdd(id!)
                 print(1)
             })
         }
         
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 
     
     // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
         if indexPath.section == 1{
             return true
@@ -290,20 +290,20 @@ class SongListTableViewController: UITableViewController, UIGestureRecognizerDel
 
     
     // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
             self.loveSongArray = LoveSongsHelper.shareLoveSong().loveSongs
             
             let id  = self.loveSongArray[indexPath.row].id
             
-            self.loveSongArray.removeAtIndex(indexPath.row)
+            self.loveSongArray.remove(at: indexPath.row)
             //print(loveSongArray.count)
             self.coreDataHelper.removeLoveSongWithID(id!)
             
             
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            tableView.deleteRows(at: [indexPath], with: .fade)
             tableView.reloadData()
-        } else if editingStyle == .Insert {
+        } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
@@ -314,9 +314,9 @@ class SongListTableViewController: UITableViewController, UIGestureRecognizerDel
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDldTableView" {
-            let vc = segue.destinationViewController as! DldSongListTableViewController
+            let vc = segue.destination as! DldSongListTableViewController
             self.dldSongArray = DldSongsHelper.shareDldSongs().dldSongs
             vc.dldSongs = self.dldSongArray
             vc.currentSongID = self.currentSongID

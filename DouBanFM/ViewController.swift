@@ -13,6 +13,7 @@ import CoreData
 import BTNavigationDropdownMenu
 import AVFoundation
 import Alamofire
+import SwiftyJSON
 
 
 var isPlayOffline = false
@@ -113,10 +114,10 @@ class ViewController: UIViewController ,PassURLDelegate,NetWorkStarkDelegate,UIG
         //设置播放按钮
         setPlayBtn()
         //隐藏播放按钮和模糊效果
-        self.playBtn.hidden = true
-        self.blurView.hidden = true
+        self.playBtn.isHidden = true
+        self.blurView.isHidden = true
         //设置指针图片的锚点
-        self.changPianZhen.layer.anchorPoint = CGPointMake(6/22, 6/36.4)
+        self.changPianZhen.layer.anchorPoint = CGPoint(x: 6/22, y: 6/36.4)
         //设置顶部动画图片
 //        self.topAnimationBtn.customView = self.animationImageView
         //添加点击动作
@@ -138,7 +139,7 @@ class ViewController: UIViewController ,PassURLDelegate,NetWorkStarkDelegate,UIG
         let backItem = UIBarButtonItem()
         backItem.title = " "
         self.navigationItem.backBarButtonItem = backItem
-        self.navigationController?.navigationBar.tintColor = UIColor.blackColor()
+        self.navigationController?.navigationBar.tintColor = UIColor.black
         
         //自定义图片
 //        let image = UIImage(named: "cm2_top_icn_back_prs")
@@ -152,12 +153,12 @@ class ViewController: UIViewController ,PassURLDelegate,NetWorkStarkDelegate,UIG
     
     //摇一摇
     
-    override func motionBegan(motion: UIEventSubtype, withEvent event: UIEvent?) {
-        if motion == UIEventSubtype.MotionShake{
+    override func motionBegan(_ motion: UIEventSubtype, with event: UIEvent?) {
+        if motion == UIEventSubtype.motionShake{
             let count = UInt32(colors.count - 1)
             let random = Int(arc4random()%count)
             color = colors[random]
-            UIView.animateWithDuration(3, animations: { () -> Void in
+            UIView.animate(withDuration: 3, animations: { () -> Void in
                 self.navigationController?.navigationBar.barTintColor = color
             })
             BTView.cellBackgroundColor = color
@@ -171,7 +172,7 @@ class ViewController: UIViewController ,PassURLDelegate,NetWorkStarkDelegate,UIG
     
     
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         
         loveSongsArray = self.loveSongsHelper.loveSongs
         dldSongArray = self.dldSongHelper.dldSongs
@@ -184,11 +185,11 @@ class ViewController: UIViewController ,PassURLDelegate,NetWorkStarkDelegate,UIG
         }
         
         //*****************
-        UIApplication.sharedApplication().beginReceivingRemoteControlEvents()
+        UIApplication.shared.beginReceivingRemoteControlEvents()
         self.becomeFirstResponder()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.barTintColor = color
         
         BTView.cellBackgroundColor = color
@@ -198,15 +199,15 @@ class ViewController: UIViewController ,PassURLDelegate,NetWorkStarkDelegate,UIG
     }
     
     
-    override func viewDidDisappear(animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         //*****************
-        UIApplication.sharedApplication().endReceivingRemoteControlEvents()
+        UIApplication.shared.endReceivingRemoteControlEvents()
         self.resignFirstResponder()
     }
     
     //*****************
-    override func canBecomeFirstResponder() -> Bool {
+    override var canBecomeFirstResponder : Bool {
         return true
     }
     
@@ -214,9 +215,9 @@ class ViewController: UIViewController ,PassURLDelegate,NetWorkStarkDelegate,UIG
     
     //*****************
     //锁屏控制中心点击事件
-    override func remoteControlReceivedWithEvent(event: UIEvent?) {
-        if event!.type == UIEventType.RemoteControl {
-            if event!.subtype == UIEventSubtype.RemoteControlNextTrack {
+    override func remoteControlReceived(with event: UIEvent?) {
+        if event!.type == UIEventType.remoteControl {
+            if event!.subtype == UIEventSubtype.remoteControlNextTrack {
                 if isPlayOffline {
                     if isRandomPlayOffline{
                         self.dldSongArray = DldSongsHelper.shareDldSongs().dldSongs
@@ -232,9 +233,9 @@ class ViewController: UIViewController ,PassURLDelegate,NetWorkStarkDelegate,UIG
                         let nextSong:DownloadSong = dldSongArray[currentIndex]
                         print(nextSong.title!)
                         
-                        let image = UIImage(data: nextSong.image!)
+                        let image = UIImage(data: nextSong.image! as Data)
                         setSongDetailForInterface(nextSong.id!,title:nextSong.title!, artistName: nextSong.artist!, image: image!)
-                        self.dataMusicplayer = try! AVAudioPlayer(data: (nextSong.song)!)
+                        self.dataMusicplayer = try! AVAudioPlayer(data: (nextSong.song)! as Data)
                         dataMusicplayer.delegate = self
                         self.dataMusicplayer.play()
                     }
@@ -252,12 +253,12 @@ class ViewController: UIViewController ,PassURLDelegate,NetWorkStarkDelegate,UIG
                         rotationImage1.stopRotation()
                         rotationImage2.stopRotation()
                         self.animationImageView.stopAnimating()
-                        self.loveBtn.setImage(UIImage(named: "no_love"), forState: UIControlState.Normal)
+                        self.loveBtn.setImage(UIImage(named: "no_love"), for: UIControlState())
                         self.netWorkStack.getResult(getSongURL)
                     }
                 }
                 
-            }else if event!.subtype == UIEventSubtype.RemoteControlPause {
+            }else if event!.subtype == UIEventSubtype.remoteControlPause {
                 print(1)
                 if dataMusicIsPlaying{
                     self.dataMusicplayer.pause()
@@ -265,7 +266,7 @@ class ViewController: UIViewController ,PassURLDelegate,NetWorkStarkDelegate,UIG
                 self.musicPlayer.pause()
                 
                 
-            }else if event!.subtype == UIEventSubtype.RemoteControlPlay {
+            }else if event!.subtype == UIEventSubtype.remoteControlPlay {
                 
                 if dataMusicIsPlaying{
                     self.dataMusicplayer.play()
@@ -281,56 +282,56 @@ class ViewController: UIViewController ,PassURLDelegate,NetWorkStarkDelegate,UIG
         if (NSClassFromString("MPNowPlayingInfoCenter") != nil) {
             
             let mArt:MPMediaItemArtwork = MPMediaItemArtwork(image: currentSongPic)
-            var dic:[String : AnyObject] = [ MPMediaItemPropertyTitle : currentSongTitle,
-                MPMediaItemPropertyArtist : currentSongArtist,
+            var dic:[String : AnyObject] = [ MPMediaItemPropertyTitle : currentSongTitle as AnyObject,
+                MPMediaItemPropertyArtist : currentSongArtist as AnyObject,
                 MPMediaItemPropertyArtwork : mArt ]
 
             if dataMusicIsPlaying {
                 let time = self.dataMusicplayer.currentTime
                 let duration = self.dataMusicplayer.duration
-                dic.updateValue(NSNumber(double: time), forKey: MPNowPlayingInfoPropertyElapsedPlaybackTime )
-                dic.updateValue(NSNumber(double: duration), forKey: MPMediaItemPropertyPlaybackDuration)
-                dic.updateValue(NSNumber(float: 1.0), forKey: MPNowPlayingInfoPropertyPlaybackRate)
+                dic.updateValue(NSNumber(value: time as Double), forKey: MPNowPlayingInfoPropertyElapsedPlaybackTime )
+                dic.updateValue(NSNumber(value: duration as Double), forKey: MPMediaItemPropertyPlaybackDuration)
+                dic.updateValue(NSNumber(value: 1.0 as Float), forKey: MPNowPlayingInfoPropertyPlaybackRate)
             }else{
                 let time = self.musicPlayer.currentTime()
                 let duration = self.musicPlayer.currentItem!.asset.duration
-                dic.updateValue(NSNumber(double: CMTimeGetSeconds(time)), forKey: MPNowPlayingInfoPropertyElapsedPlaybackTime )
-                dic.updateValue(NSNumber(double: CMTimeGetSeconds(duration)), forKey: MPMediaItemPropertyPlaybackDuration)
-                dic.updateValue(NSNumber(float: 1.0), forKey: MPNowPlayingInfoPropertyPlaybackRate)
+                dic.updateValue(NSNumber(value: CMTimeGetSeconds(time) as Double), forKey: MPNowPlayingInfoPropertyElapsedPlaybackTime )
+                dic.updateValue(NSNumber(value: CMTimeGetSeconds(duration) as Double), forKey: MPMediaItemPropertyPlaybackDuration)
+                dic.updateValue(NSNumber(value: 1.0 as Float), forKey: MPNowPlayingInfoPropertyPlaybackRate)
             }
-            MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = dic
+            MPNowPlayingInfoCenter.default().nowPlayingInfo = dic
         }
     }
     
     
     //检查mark
     func checkTheMark(){
-        if isPlayOffline{
-            self.BTView.is1s = true
-        }else{
-            self.BTView.is1s = false
-        }
-        if isRandomPlayOnline{
-            self.BTView.is0s = true
-        }else{
-            self.BTView.is0s = false
-        }
-        if isRepeatPlay{
-            self.BTView.is2s = true
-        }else{
-            self.BTView.is2s = false
-        }
+//        if isPlayOffline{
+//            self.BTView.is1s = true
+//        }else{
+//            self.BTView.is1s = false
+//        }
+//        if isRandomPlayOnline{
+//            self.BTView.is0s = true
+//        }else{
+//            self.BTView.is0s = false
+//        }
+//        if isRepeatPlay{
+//            self.BTView.is2s = true
+//        }else{
+//            self.BTView.is2s = false
+//        }
     }
     
     
     //更多按钮
     func setMoreBtn(){
         let items = ["随机播放喜欢的歌曲", "随机播放下载的歌曲", "单曲循环" ,"设置"]
-        BTView = BTNavigationDropdownMenu(title: "", items: items)
+        BTView = BTNavigationDropdownMenu(title: "", items: items as [AnyObject])
         BTView.arrowImage = UIImage(named: "ar")
         BTView.arrowPadding = -15
         BTView.cellHeight = 44
-        BTView.cellSeparatorColor = UIColor.clearColor()
+        BTView.cellSeparatorColor = UIColor.clear
         BTView.cellBackgroundColor = color
         BTView.checkMarkImage = UIImage(named: "checkmark")
         
@@ -388,7 +389,7 @@ class ViewController: UIViewController ,PassURLDelegate,NetWorkStarkDelegate,UIG
                 
                 self.checkTheMark()
             case 3 :
-                self.presentViewController((self.storyboard?.instantiateViewControllerWithIdentifier("setView"))!, animated: true, completion: nil)
+                self.present((self.storyboard?.instantiateViewController(withIdentifier: "setView"))!, animated: true, completion: nil)
                 
             default :
                 break
@@ -406,7 +407,7 @@ class ViewController: UIViewController ,PassURLDelegate,NetWorkStarkDelegate,UIG
     var currentIndex = CurrentDataSong.shareCurrentDataSong().index
     
     //下一首按钮
-    @IBAction func btn(sender: UIButton) {
+    @IBAction func btn(_ sender: UIButton) {
         if isPlayOffline {
             self.dldSongArray = DldSongsHelper.shareDldSongs().dldSongs
             if dldSongArray.count != 0 {
@@ -424,9 +425,9 @@ class ViewController: UIViewController ,PassURLDelegate,NetWorkStarkDelegate,UIG
                     let nextSong:DownloadSong = dldSongArray[currentIndex]
                     print(nextSong.title!)
                     
-                    let image = UIImage(data: nextSong.image!)
+                    let image = UIImage(data: nextSong.image! as Data)
                     setSongDetailForInterface(nextSong.id!,title:nextSong.title!, artistName: nextSong.artist!, image: image!)
-                    self.dataMusicplayer = try! AVAudioPlayer(data: (nextSong.song)!)
+                    self.dataMusicplayer = try! AVAudioPlayer(data: (nextSong.song)! as Data)
                     dataMusicplayer.delegate = self
                     self.dataMusicplayer.play()
                 }
@@ -447,7 +448,7 @@ class ViewController: UIViewController ,PassURLDelegate,NetWorkStarkDelegate,UIG
                 rotationImage1.stopRotation()
                 rotationImage2.stopRotation()
                 self.animationImageView.stopAnimating()
-                self.loveBtn.setImage(UIImage(named: "no_love"), forState: UIControlState.Normal)
+                self.loveBtn.setImage(UIImage(named: "no_love"), for: UIControlState())
                 self.netWorkStack.getResult(getSongURL)
             }
         }
@@ -456,12 +457,12 @@ class ViewController: UIViewController ,PassURLDelegate,NetWorkStarkDelegate,UIG
 
     
     // MARK: - NetWorkStarkDelegate 相关方法
-    func didGetResult(data: NSData) {
+    func didGetResult(_ data: Data) {
         if dataMusicIsPlaying {
             self.dataMusicplayer.pause()
             dataMusicIsPlaying = false
         }
-            if let jsonDic = try? NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments) as? NSDictionary {
+            if let jsonDic = try? JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as? NSDictionary {
                 //print(jsonDic)
                 let json = JSON(jsonDic!)
                 let jsonArray = json["song"].array
@@ -485,7 +486,7 @@ class ViewController: UIViewController ,PassURLDelegate,NetWorkStarkDelegate,UIG
         
     }
     
-    func didGetError(err: ErrorType?) {
+    func didGetError(_ err: Error?) {
         ProgressHUD.showError("网络连接错误，可以播放已下载的歌曲", interaction: true)
     }
     
@@ -493,7 +494,7 @@ class ViewController: UIViewController ,PassURLDelegate,NetWorkStarkDelegate,UIG
     
     //配置歌曲详情到界面
     
-    func setSongDetailForInterface(id:String,title:String,artistName:String,image:UIImage){
+    func setSongDetailForInterface(_ id:String,title:String,artistName:String,image:UIImage){
         
         self.title = title
         self.navigationItem.prompt = artistName
@@ -511,8 +512,8 @@ class ViewController: UIViewController ,PassURLDelegate,NetWorkStarkDelegate,UIG
         
         self.animationImageView.startAnimating()
         
-        self.playBtn.hidden = true
-        self.blurView.hidden = true
+        self.playBtn.isHidden = true
+        self.blurView.isHidden = true
         
         self.currentSongTitle = title
         self.currentSongArtist = artistName
@@ -526,22 +527,22 @@ class ViewController: UIViewController ,PassURLDelegate,NetWorkStarkDelegate,UIG
     
     
     //判断播放的歌是不是喜欢的歌
-    func isLoveSong(id:String){
+    func isLoveSong(_ id:String){
         
         loveSongsArray = loveSongsHelper.loveSongs
         if loveSongsHelper.loveSongsID.contains(id){
-            self.loveBtn.setImage(UIImage(named: "love"), forState: UIControlState.Normal)
+            self.loveBtn.setImage(UIImage(named: "love"), for: UIControlState())
         }else{
-            self.loveBtn.setImage(UIImage(named: "no_love"), forState: UIControlState.Normal)
+            self.loveBtn.setImage(UIImage(named: "no_love"), for: UIControlState())
         }
         
     }
     
     //配置音乐播放器
     func fisrstConfigueMusicPlayer(){
-        let playerItem = AVPlayerItem(URL: NSURL(string: currentNetSong.url!)!)
+        let playerItem = AVPlayerItem(url: URL(string: currentNetSong.url!)!)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "playerItemDidReachEnd:", name: AVPlayerItemDidPlayToEndTimeNotification, object: playerItem)
+        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.playerItemDidReachEnd(_:)), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: playerItem)
         
         musicPlayer = AVPlayer(playerItem: playerItem)
         let layer = AVPlayerLayer(player: musicPlayer)
@@ -552,10 +553,10 @@ class ViewController: UIViewController ,PassURLDelegate,NetWorkStarkDelegate,UIG
 
         //后台播放
         var bgTask:UIBackgroundTaskIdentifier = 0
-        if UIApplication.sharedApplication().applicationState == UIApplicationState.Background {
+        if UIApplication.shared.applicationState == UIApplicationState.background {
             self.musicPlayer.play()
-            let app:UIApplication = UIApplication.sharedApplication()
-            let newTask:UIBackgroundTaskIdentifier = app.beginBackgroundTaskWithExpirationHandler(nil)
+            let app:UIApplication = UIApplication.shared
+            let newTask:UIBackgroundTaskIdentifier = app.beginBackgroundTask(expirationHandler: nil)
             if newTask != UIBackgroundTaskInvalid {
                 app.endBackgroundTask(bgTask)
             }
@@ -569,16 +570,16 @@ class ViewController: UIViewController ,PassURLDelegate,NetWorkStarkDelegate,UIG
     //有音乐播放器时直接播放下一首
     func playNextSong(){
         
-        let item = AVPlayerItem(URL: NSURL(string: currentNetSong.url!)!)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "playerItemDidReachEnd:", name: AVPlayerItemDidPlayToEndTimeNotification, object: item)
-        musicPlayer.replaceCurrentItemWithPlayerItem(item)
+        let item = AVPlayerItem(url: URL(string: currentNetSong.url!)!)
+        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.playerItemDidReachEnd(_:)), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: item)
+        musicPlayer.replaceCurrentItem(with: item)
         musicPlayer.play()
-        self.playBtn.hidden = true
-        self.blurView.hidden = true
+        self.playBtn.isHidden = true
+        self.blurView.isHidden = true
     }
     
     //当前在线歌曲播放完成之后接受通知自动开始播放下一首歌
-    func playerItemDidReachEnd(aNotification:NSNotification){
+    func playerItemDidReachEnd(_ aNotification:Notification){
         
         if isRandomPlayOnline {
             if isRepeatPlay{
@@ -601,7 +602,7 @@ class ViewController: UIViewController ,PassURLDelegate,NetWorkStarkDelegate,UIG
     }
     
     
-    func audioPlayerDidFinishPlaying(player: AVAudioPlayer, successfully flag: Bool) {
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
         
         if isPlayOffline{
             if isRepeatPlay {
@@ -622,7 +623,7 @@ class ViewController: UIViewController ,PassURLDelegate,NetWorkStarkDelegate,UIG
 
     
     // MARK: - PassURLDelegate 相关方法
-    func didGetURL(url: String) {
+    func didGetURL(_ url: String) {
         isPlayOffline = false
         getSongURL = url
         netWorkStack.getResult(url)
@@ -631,12 +632,12 @@ class ViewController: UIViewController ,PassURLDelegate,NetWorkStarkDelegate,UIG
     
     
     // MARK: - storyboard转场相关
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showChanel"{
-            let vc = segue.destinationViewController as! ChanelTableViewController
+            let vc = segue.destination as! ChanelTableViewController
             vc.delegate = self
         }else if segue.identifier == "showSongList" {
-            let nvc = segue.destinationViewController as! UINavigationController
+            let nvc = segue.destination as! UINavigationController
             let vc = nvc.topViewController as! SongListTableViewController
 
             vc.currentSongTitle = self.currentSongTitle
@@ -652,32 +653,32 @@ class ViewController: UIViewController ,PassURLDelegate,NetWorkStarkDelegate,UIG
 // MARK: - 红心按钮
 
 extension ViewController{
-    @IBAction func loveBtnClick(sender: UIButton) {
+    @IBAction func loveBtnClick(_ sender: UIButton) {
         
         if !isPlayOffline{
-            sender.setImage(UIImage(named: "love"), forState: UIControlState.Normal)
+            sender.setImage(UIImage(named: "love"), for: UIControlState())
             
-            let myGloQueue:dispatch_queue_t = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
-            dispatch_async(myGloQueue) { () -> Void in
-                let data = NSData(contentsOfURL: NSURL(string: self.currentNetSong.picURL!)!)
+            let myGloQueue:DispatchQueue = DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default)
+            myGloQueue.async { () -> Void in
+                let data = try? Data(contentsOf: URL(string: self.currentNetSong.picURL!)!)
                 if self.coreDataHelper.saveLoveSong(self.currentNetSong.songID!,title:self.currentNetSong.name!, artist: self.currentNetSong.artistName!, url: self.currentNetSong.url!, picURL: self.currentNetSong.picURL!, albumtitle: self.currentNetSong.albumtitle!, publicTime: self.currentNetSong.publicTime,imageData: data!){
-                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                        let alertView = UIAlertController(title: "喜欢", message: "添加成功", preferredStyle: UIAlertControllerStyle.Alert)
-                        alertView.addAction(UIAlertAction(title: "确定", style: UIAlertActionStyle.Cancel, handler: nil))
-                        self.presentViewController(alertView, animated: true, completion: nil)
+                    DispatchQueue.main.async(execute: { () -> Void in
+                        let alertView = UIAlertController(title: "喜欢", message: "添加成功", preferredStyle: UIAlertControllerStyle.alert)
+                        alertView.addAction(UIAlertAction(title: "确定", style: UIAlertActionStyle.cancel, handler: nil))
+                        self.present(alertView, animated: true, completion: nil)
                     })
                 }else{
-                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                        let alertView = UIAlertController(title: "喜欢", message: "该歌曲已存在", preferredStyle: UIAlertControllerStyle.Alert)
-                        alertView.addAction(UIAlertAction(title: "确定", style: UIAlertActionStyle.Cancel, handler: nil))
-                        self.presentViewController(alertView, animated: true, completion: nil)
+                    DispatchQueue.main.async(execute: { () -> Void in
+                        let alertView = UIAlertController(title: "喜欢", message: "该歌曲已存在", preferredStyle: UIAlertControllerStyle.alert)
+                        alertView.addAction(UIAlertAction(title: "确定", style: UIAlertActionStyle.cancel, handler: nil))
+                        self.present(alertView, animated: true, completion: nil)
                     })
                 }
             }
         }else{
-            let alertView = UIAlertController(title: "", message: "正在使用离线播放", preferredStyle: UIAlertControllerStyle.Alert)
-            alertView.addAction(UIAlertAction(title: "确定", style: UIAlertActionStyle.Cancel, handler: nil))
-            self.presentViewController(alertView, animated: true, completion: nil)
+            let alertView = UIAlertController(title: "", message: "正在使用离线播放", preferredStyle: UIAlertControllerStyle.alert)
+            alertView.addAction(UIAlertAction(title: "确定", style: UIAlertActionStyle.cancel, handler: nil))
+            self.present(alertView, animated: true, completion: nil)
         }
     }
 } 
@@ -686,7 +687,7 @@ extension ViewController{
 // MARK: - 暂停按钮
 extension ViewController{
     
-    @IBAction func pauseBtnClick(sender: UIButton) {
+    @IBAction func pauseBtnClick(_ sender: UIButton) {
         if !isPlayOffline{
             self.musicPlayer.pause()
         }else{
@@ -696,26 +697,26 @@ extension ViewController{
         self.rotationImage1.stopRotation()
         self.rotationImage2.stopRotation()
         self.animationImageView.stopAnimating()
-        self.blurView.hidden = false
-        self.playBtn.hidden = false
-        self.playBtn.enabled = true
+        self.blurView.isHidden = false
+        self.playBtn.isHidden = false
+        self.playBtn.isEnabled = true
         self.needleAnimationNotBack()
     }
     
     func setPlayBtn(){
-        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Light)
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.light)
         self.blurView = UIVisualEffectView(effect: blurEffect)
-        self.blurView.frame = CGRectMake(-1, -1, 150, 150)
+        self.blurView.frame = CGRect(x: -1, y: -1, width: 150, height: 150)
         self.blurView.layer.cornerRadius = 75
         self.blurView.layer.masksToBounds = true
         self.blurView.alpha = 0.8
         self.pauseBtn.addSubview(blurView)
-        self.playBtn = UIButton(type: UIButtonType.System)
-        self.playBtn.frame = CGRectMake(45, 45, 60, 60)
-        self.playBtn.addTarget(self, action: "playBtnClick", forControlEvents: UIControlEvents.TouchUpInside)
+        self.playBtn = UIButton(type: UIButtonType.system)
+        self.playBtn.frame = CGRect(x: 45, y: 45, width: 60, height: 60)
+        self.playBtn.addTarget(self, action: #selector(ViewController.playBtnClick), for: UIControlEvents.touchUpInside)
         
-        self.playBtn.tintColor = UIColor.blackColor()
-        self.playBtn.setImage(UIImage(named: "btn_playblack"), forState: UIControlState.Normal)
+        self.playBtn.tintColor = UIColor.black
+        self.playBtn.setImage(UIImage(named: "btn_playblack"), for: UIControlState())
         self.blurView.addSubview(playBtn)
     }
     
@@ -729,8 +730,8 @@ extension ViewController{
         self.rotationImage1.resumeRotation()
         self.rotationImage2.resumeRotation()
         self.animationImageView.startAnimating()
-        self.playBtn.hidden = true
-        self.blurView.hidden = true
+        self.playBtn.isHidden = true
+        self.blurView.isHidden = true
         needleAnimationNoMove()
     }
 }
@@ -761,9 +762,9 @@ extension ViewController{
         rotation.toValue = -M_PI/4
         
         rotation.fillMode = kCAFillModeForwards
-        rotation.removedOnCompletion = false
+        rotation.isRemovedOnCompletion = false
         
-        self.changPianZhen.layer.addAnimation(rotation, forKey: "rotation1")
+        self.changPianZhen.layer.add(rotation, forKey: "rotation1")
         
     }
     
@@ -775,15 +776,15 @@ extension ViewController{
         rotation.toValue = M_PI/40
         
         rotation.fillMode = kCAFillModeForwards
-        rotation.removedOnCompletion = false
+        rotation.isRemovedOnCompletion = false
         
-        self.changPianZhen.layer.addAnimation(rotation, forKey: "rotation1")
+        self.changPianZhen.layer.add(rotation, forKey: "rotation1")
         
     }
     
     
      func addSingleFingerOneClickForChangpianzhen(){
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "singleClick")
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ViewController.singleClick))
         tapGestureRecognizer.numberOfTapsRequired = 1
         tapGestureRecognizer.numberOfTouchesRequired = 1
         tapGestureRecognizer.delegate = self
@@ -792,7 +793,7 @@ extension ViewController{
     
     
     func singleClick(){
-        self.detailBlurView.hidden = false
+        self.detailBlurView.isHidden = false
     }
     
 }
@@ -801,7 +802,7 @@ extension ViewController{
 // MARK: - 从喜欢的歌曲列表播放
 
 extension ViewController:PassSongDetailDelegate{
-    func didGetDetail(song: Song) {
+    func didGetDetail(_ song: Song) {
         self.playOnlineMusic(song)
     }
 }
@@ -811,7 +812,7 @@ extension ViewController:PassSongDetailDelegate{
 
 extension ViewController{
     
-    func playOfflineMusic(song:DownloadSong) {
+    func playOfflineMusic(_ song:DownloadSong) {
         //isPlayOffline = true
         if dataMusicIsPlaying {
             self.dataMusicplayer.pause()
@@ -819,16 +820,16 @@ extension ViewController{
         }
         self.musicPlayer.pause()
         self.currentDataSong = song
-        self.dataMusicplayer = try! AVAudioPlayer(data: song.song!)
+        self.dataMusicplayer = try! AVAudioPlayer(data: song.song! as Data)
         self.dataMusicplayer.delegate = self
         self.dataMusicplayer.play()
         dataMusicIsPlaying = true
-        self.setSongDetailForInterface(song.id! ,title: song.title!, artistName: song.artist!, image: UIImage(data: song.image!)!)
+        self.setSongDetailForInterface(song.id! ,title: song.title!, artistName: song.artist!, image: UIImage(data: song.image! as Data)!)
         self.currentSongTitle = song.title
         self.currentSongId = song.id
     }
     
-    func playOnlineMusic(song:Song){
+    func playOnlineMusic(_ song:Song){
         isPlayOffline = false
         if dataMusicIsPlaying{
             self.dataMusicplayer.pause()
@@ -842,26 +843,26 @@ extension ViewController{
         self.currentNetSong.publicTime = song.public_time
         self.currentNetSong.songID = song.id
         
-        let playerItem = AVPlayerItem(URL: NSURL(string: self.currentNetSong.url!)!)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "playerItemDidReachEnd:", name: AVPlayerItemDidPlayToEndTimeNotification, object: playerItem)
-        self.musicPlayer.replaceCurrentItemWithPlayerItem(playerItem)
+        let playerItem = AVPlayerItem(url: URL(string: self.currentNetSong.url!)!)
+        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.playerItemDidReachEnd(_:)), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: playerItem)
+        self.musicPlayer.replaceCurrentItem(with: playerItem)
         
         self.musicPlayer.play()
-        self.setSongDetailForInterface(song.id! ,title: song.title!, artistName: song.artist!, image: UIImage(data: song.image!)!)
+        self.setSongDetailForInterface(song.id! ,title: song.title!, artistName: song.artist!, image: UIImage(data: song.image! as Data)!)
         self.currentSongTitle = song.title
         self.currentSongId =  song.id
     }
     
-    func playNetMusic(song:NetSong){
+    func playNetMusic(_ song:NetSong){
         isPlayOffline = false
         if dataMusicIsPlaying{
             self.dataMusicplayer.pause()
             dataMusicIsPlaying = false
         }
         self.musicPlayer.pause()
-        let playerItem = AVPlayerItem(URL: NSURL(string: self.currentNetSong.url!)!)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "playerItemDidReachEnd:", name: AVPlayerItemDidPlayToEndTimeNotification, object: playerItem)
-        self.musicPlayer.replaceCurrentItemWithPlayerItem(playerItem)
+        let playerItem = AVPlayerItem(url: URL(string: self.currentNetSong.url!)!)
+        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.playerItemDidReachEnd(_:)), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: playerItem)
+        self.musicPlayer.replaceCurrentItem(with: playerItem)
         
         self.musicPlayer.play()
         self.setSongDetailForInterface(song.songID!,title:song.name!, artistName: song.artistName!, image: song.image)
@@ -886,23 +887,25 @@ extension ViewController {
             let url = "https://api.douban.com/v2/music/\(currentSongId)"
             // My API (GET https://api.douban.com/v2/music/3986489)
             // Fetch Request
-            Alamofire.request(.GET, url).response(completionHandler: { (_, _, data, err) -> Void in
-                if err == nil {
-                    if let jsonDic = try? NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments) as? NSDictionary {
+            
+            Alamofire.request(url).responseData(completionHandler: { (data) in
+                if data.error == nil {
+                    if let jsonDic = try? JSONSerialization.jsonObject(with: data.data!, options: JSONSerialization.ReadingOptions.allowFragments) as? NSDictionary {
                         let json = JSON(jsonDic!)
                         let str = json["summary"].string
-                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        DispatchQueue.main.async(execute: { () -> Void in
                             self.detailText.text = str! + "\n豆瓣音乐：http://m.douban.com/music/subject/\(self.currentSongId)"
                             
                         })
                     }
                 }
             })
+            
         }
     }
     
     func addSingleFingerOneClickForDetailBlurView(){
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "detailSingleClick")
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ViewController.detailSingleClick))
         tapGestureRecognizer.numberOfTapsRequired = 1
         tapGestureRecognizer.numberOfTouchesRequired = 1
         tapGestureRecognizer.delegate = self
@@ -910,7 +913,7 @@ extension ViewController {
     }
     
     func detailSingleClick(){
-        self.detailBlurView.hidden = true
+        self.detailBlurView.isHidden = true
         congfigureDetailView()
     }
     

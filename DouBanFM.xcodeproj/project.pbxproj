@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8C1435441BA6B7D70046D187 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C1435431BA6B7D70046D187 /* Assets.xcassets */; settings = {ASSET_TAGS = (); }; };
-		8C167AA01B9DD52600311745 /* SongListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C167A9F1B9DD52600311745 /* SongListTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		8C1B3FFF1BA7EB2E00035A95 /* ProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8C1B3FFC1BA7EB2E00035A95 /* ProgressHUD.bundle */; settings = {ASSET_TAGS = (); }; };
-		8C1B40001BA7EB2E00035A95 /* ProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1B3FFE1BA7EB2E00035A95 /* ProgressHUD.m */; settings = {ASSET_TAGS = (); }; };
-		8C2B279A1B9FEA3200EAAA52 /* LoveSongs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2B27991B9FEA3200EAAA52 /* LoveSongs.swift */; settings = {ASSET_TAGS = (); }; };
+		8C1435441BA6B7D70046D187 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C1435431BA6B7D70046D187 /* Assets.xcassets */; };
+		8C167AA01B9DD52600311745 /* SongListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C167A9F1B9DD52600311745 /* SongListTableViewController.swift */; };
+		8C1B3FFF1BA7EB2E00035A95 /* ProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8C1B3FFC1BA7EB2E00035A95 /* ProgressHUD.bundle */; };
+		8C1B40001BA7EB2E00035A95 /* ProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1B3FFE1BA7EB2E00035A95 /* ProgressHUD.m */; };
+		8C2B279A1B9FEA3200EAAA52 /* LoveSongs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2B27991B9FEA3200EAAA52 /* LoveSongs.swift */; };
 		8C31EF3F1B9C56FB00862996 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C31EF3E1B9C56FB00862996 /* AppDelegate.swift */; };
 		8C31EF411B9C56FB00862996 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C31EF401B9C56FB00862996 /* ViewController.swift */; };
 		8C31EF441B9C56FB00862996 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C31EF421B9C56FB00862996 /* Main.storyboard */; };
@@ -25,26 +25,25 @@
 		8C31EF931B9C78E400862996 /* Chanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C31EF8D1B9C78E400862996 /* Chanel.swift */; };
 		8C31EF961B9C78E400862996 /* Singer+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C31EF901B9C78E400862996 /* Singer+CoreDataProperties.swift */; };
 		8C31EF971B9C78E400862996 /* Singer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C31EF911B9C78E400862996 /* Singer.swift */; };
-		8C31EF991B9C7C1600862996 /* NetWorkStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C31EF981B9C7C1600862996 /* NetWorkStack.swift */; settings = {ASSET_TAGS = (); }; };
-		8C31EF9B1B9C850E00862996 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C31EF9A1B9C850E00862996 /* SwiftyJSON.swift */; settings = {ASSET_TAGS = (); }; };
-		8C66F9421BA81F8700441487 /* DownloadSong+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C66F93E1BA81F8700441487 /* DownloadSong+CoreDataProperties.swift */; settings = {ASSET_TAGS = (); }; };
-		8C66F9431BA81F8700441487 /* DownloadSong.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C66F93F1BA81F8700441487 /* DownloadSong.swift */; settings = {ASSET_TAGS = (); }; };
-		8C66F9441BA81F8700441487 /* Song+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C66F9401BA81F8700441487 /* Song+CoreDataProperties.swift */; settings = {ASSET_TAGS = (); }; };
-		8C66F9451BA81F8700441487 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C66F9411BA81F8700441487 /* Song.swift */; settings = {ASSET_TAGS = (); }; };
-		8C783B421BA1D2A700EEE28B /* SwiftNotice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C783B411BA1D2A700EEE28B /* SwiftNotice.swift */; settings = {ASSET_TAGS = (); }; };
-		8C783B441BA1E10E00EEE28B /* DldSongListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C783B431BA1E10E00EEE28B /* DldSongListTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		8C783B461BA1E39C00EEE28B /* DldSongListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C783B451BA1E39C00EEE28B /* DldSongListCell.swift */; settings = {ASSET_TAGS = (); }; };
-		8C783B481BA1E44E00EEE28B /* DldSongs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C783B471BA1E44E00EEE28B /* DldSongs.swift */; settings = {ASSET_TAGS = (); }; };
-		8C7BA74A1B9EF1DB00302560 /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7BA7491B9EF1DB00302560 /* CoreDataHelper.swift */; settings = {ASSET_TAGS = (); }; };
-		8C83D3D51BA69BB7004F954B /* SetTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C83D3D41BA69BB7004F954B /* SetTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		8CA346641BA69D4C00CC914A /* SetThemeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA346631BA69D4C00CC914A /* SetThemeCell.swift */; settings = {ASSET_TAGS = (); }; };
-		8CA7FFCC1BA3F8FC00B64F8A /* CurrentDataSong.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA7FFCB1BA3F8FC00B64F8A /* CurrentDataSong.swift */; settings = {ASSET_TAGS = (); }; };
-		8CAA34371BA016ED0057667F /* AnimationImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CAA34361BA016ED0057667F /* AnimationImageView.swift */; settings = {ASSET_TAGS = (); }; };
-		8CD836B81B9CA263009F7A4F /* PassValueDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD836B71B9CA263009F7A4F /* PassValueDelegate.swift */; settings = {ASSET_TAGS = (); }; };
-		8CEFA4A01B9DDA9F0073EBC8 /* SongListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CEFA49F1B9DDA9F0073EBC8 /* SongListCell.swift */; settings = {ASSET_TAGS = (); }; };
-		8CEFA4A31B9DDE020073EBC8 /* NetSong.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CEFA4A21B9DDE020073EBC8 /* NetSong.swift */; settings = {ASSET_TAGS = (); }; };
-		8CF6953B1B9D623400C0C421 /* XYCircleAndRotationImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF6953A1B9D623400C0C421 /* XYCircleAndRotationImageView.swift */; settings = {ASSET_TAGS = (); }; };
-		CBE7C97C910A6ED6DCEB533F /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C7561F9F31075913E6C31BF /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		8C31EF991B9C7C1600862996 /* NetWorkStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C31EF981B9C7C1600862996 /* NetWorkStack.swift */; };
+		8C66F9421BA81F8700441487 /* DownloadSong+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C66F93E1BA81F8700441487 /* DownloadSong+CoreDataProperties.swift */; };
+		8C66F9431BA81F8700441487 /* DownloadSong.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C66F93F1BA81F8700441487 /* DownloadSong.swift */; };
+		8C66F9441BA81F8700441487 /* Song+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C66F9401BA81F8700441487 /* Song+CoreDataProperties.swift */; };
+		8C66F9451BA81F8700441487 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C66F9411BA81F8700441487 /* Song.swift */; };
+		8C783B421BA1D2A700EEE28B /* SwiftNotice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C783B411BA1D2A700EEE28B /* SwiftNotice.swift */; };
+		8C783B441BA1E10E00EEE28B /* DldSongListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C783B431BA1E10E00EEE28B /* DldSongListTableViewController.swift */; };
+		8C783B461BA1E39C00EEE28B /* DldSongListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C783B451BA1E39C00EEE28B /* DldSongListCell.swift */; };
+		8C783B481BA1E44E00EEE28B /* DldSongs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C783B471BA1E44E00EEE28B /* DldSongs.swift */; };
+		8C7BA74A1B9EF1DB00302560 /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7BA7491B9EF1DB00302560 /* CoreDataHelper.swift */; };
+		8C83D3D51BA69BB7004F954B /* SetTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C83D3D41BA69BB7004F954B /* SetTableViewController.swift */; };
+		8CA346641BA69D4C00CC914A /* SetThemeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA346631BA69D4C00CC914A /* SetThemeCell.swift */; };
+		8CA7FFCC1BA3F8FC00B64F8A /* CurrentDataSong.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA7FFCB1BA3F8FC00B64F8A /* CurrentDataSong.swift */; };
+		8CAA34371BA016ED0057667F /* AnimationImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CAA34361BA016ED0057667F /* AnimationImageView.swift */; };
+		8CD836B81B9CA263009F7A4F /* PassValueDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD836B71B9CA263009F7A4F /* PassValueDelegate.swift */; };
+		8CEFA4A01B9DDA9F0073EBC8 /* SongListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CEFA49F1B9DDA9F0073EBC8 /* SongListCell.swift */; };
+		8CEFA4A31B9DDE020073EBC8 /* NetSong.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CEFA4A21B9DDE020073EBC8 /* NetSong.swift */; };
+		8CF6953B1B9D623400C0C421 /* XYCircleAndRotationImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF6953A1B9D623400C0C421 /* XYCircleAndRotationImageView.swift */; };
+		91DFF893814E62C20685F513 /* Pods_DouBanFM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59B13828790A0175CA62E281 /* Pods_DouBanFM.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +64,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4FC327FCBA82E2E8604C75E2 /* Pods-DouBanFM.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DouBanFM.release.xcconfig"; path = "Pods/Target Support Files/Pods-DouBanFM/Pods-DouBanFM.release.xcconfig"; sourceTree = "<group>"; };
+		59B13828790A0175CA62E281 /* Pods_DouBanFM.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DouBanFM.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C1435431BA6B7D70046D187 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8C167A9F1B9DD52600311745 /* SongListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongListTableViewController.swift; sourceTree = "<group>"; };
 		8C1B3FFC1BA7EB2E00035A95 /* ProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ProgressHUD.bundle; sourceTree = "<group>"; };
@@ -91,7 +92,6 @@
 		8C31EF901B9C78E400862996 /* Singer+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Singer+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		8C31EF911B9C78E400862996 /* Singer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Singer.swift; sourceTree = "<group>"; };
 		8C31EF981B9C7C1600862996 /* NetWorkStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetWorkStack.swift; sourceTree = "<group>"; };
-		8C31EF9A1B9C850E00862996 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		8C66F93E1BA81F8700441487 /* DownloadSong+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DownloadSong+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		8C66F93F1BA81F8700441487 /* DownloadSong.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadSong.swift; sourceTree = "<group>"; };
 		8C66F9401BA81F8700441487 /* Song+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Song+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -111,8 +111,7 @@
 		8CEFA49F1B9DDA9F0073EBC8 /* SongListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongListCell.swift; sourceTree = "<group>"; };
 		8CEFA4A21B9DDE020073EBC8 /* NetSong.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetSong.swift; sourceTree = "<group>"; };
 		8CF6953A1B9D623400C0C421 /* XYCircleAndRotationImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XYCircleAndRotationImageView.swift; sourceTree = "<group>"; };
-		8EC76485E2E1D0AB57E2E071 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		8F514F72E91EFD32412EBBF6 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		E86B476EAB7AB67FD433824C /* Pods-DouBanFM.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DouBanFM.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DouBanFM/Pods-DouBanFM.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,7 +119,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CBE7C97C910A6ED6DCEB533F /* Pods.framework in Frameworks */,
+				91DFF893814E62C20685F513 /* Pods_DouBanFM.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -145,17 +144,9 @@
 			isa = PBXGroup;
 			children = (
 				8C7561F9F31075913E6C31BF /* Pods.framework */,
+				59B13828790A0175CA62E281 /* Pods_DouBanFM.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		78177B96512FE332C537A4EA /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				8EC76485E2E1D0AB57E2E071 /* Pods.debug.xcconfig */,
-				8F514F72E91EFD32412EBBF6 /* Pods.release.xcconfig */,
-			);
-			name = Pods;
 			sourceTree = "<group>";
 		};
 		8C1B3FFB1BA7EB2E00035A95 /* ProgressHUD */ = {
@@ -176,8 +167,8 @@
 				8C31EF551B9C56FB00862996 /* DouBanFMTests */,
 				8C31EF601B9C56FB00862996 /* DouBanFMUITests */,
 				8C31EF3C1B9C56FB00862996 /* Products */,
-				78177B96512FE332C537A4EA /* Pods */,
 				2E5E8785F1C8207919DB01CF /* Frameworks */,
+				9D9871824344E9D4F5A44111 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -206,7 +197,6 @@
 				8CEFA4A11B9DDDCA0073EBC8 /* Model */,
 				8C3E910E1BA1B6AC00379444 /* View */,
 				8C3E910D1BA1B67E00379444 /* Controller */,
-				8C31EF9A1B9C850E00862996 /* SwiftyJSON.swift */,
 				8C31EF981B9C7C1600862996 /* NetWorkStack.swift */,
 				8C783B411BA1D2A700EEE28B /* SwiftNotice.swift */,
 				8CD836B71B9CA263009F7A4F /* PassValueDelegate.swift */,
@@ -283,6 +273,15 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
+		9D9871824344E9D4F5A44111 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E86B476EAB7AB67FD433824C /* Pods-DouBanFM.debug.xcconfig */,
+				4FC327FCBA82E2E8604C75E2 /* Pods-DouBanFM.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -290,12 +289,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8C31EF661B9C56FB00862996 /* Build configuration list for PBXNativeTarget "DouBanFM" */;
 			buildPhases = (
-				6E62A3140A0AA71D691E8C65 /* Check Pods Manifest.lock */,
+				3CDC041665946F48B44BEDB9 /* [CP] Check Pods Manifest.lock */,
 				8C31EF371B9C56FB00862996 /* Sources */,
 				8C31EF381B9C56FB00862996 /* Frameworks */,
 				8C31EF391B9C56FB00862996 /* Resources */,
-				8B43E16B2535AD490CC36CE3 /* Copy Pods Resources */,
-				0FC4E8753BC1B5F6C897FBBC /* Embed Pods Frameworks */,
+				3AD09FA6AED0CA4DDE49C889 /* [CP] Embed Pods Frameworks */,
+				EFA290719B10558EE6BF3889 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -355,15 +354,18 @@
 					8C31EF3A1B9C56FB00862996 = {
 						CreatedOnToolsVersion = 7.0;
 						DevelopmentTeam = XKE2B6H7CT;
+						LastSwiftMigration = 0820;
 					};
 					8C31EF511B9C56FB00862996 = {
 						CreatedOnToolsVersion = 7.0;
 						DevelopmentTeam = XKE2B6H7CT;
+						LastSwiftMigration = 0820;
 						TestTargetID = 8C31EF3A1B9C56FB00862996;
 					};
 					8C31EF5C1B9C56FB00862996 = {
 						CreatedOnToolsVersion = 7.0;
 						DevelopmentTeam = XKE2B6H7CT;
+						LastSwiftMigration = 0820;
 						TestTargetID = 8C31EF3A1B9C56FB00862996;
 					};
 				};
@@ -418,49 +420,49 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0FC4E8753BC1B5F6C897FBBC /* Embed Pods Frameworks */ = {
+		3AD09FA6AED0CA4DDE49C889 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DouBanFM/Pods-DouBanFM-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		6E62A3140A0AA71D691E8C65 /* Check Pods Manifest.lock */ = {
+		3CDC041665946F48B44BEDB9 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		8B43E16B2535AD490CC36CE3 /* Copy Pods Resources */ = {
+		EFA290719B10558EE6BF3889 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DouBanFM/Pods-DouBanFM-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -482,7 +484,6 @@
 				8C83D3D51BA69BB7004F954B /* SetTableViewController.swift in Sources */,
 				8C7BA74A1B9EF1DB00302560 /* CoreDataHelper.swift in Sources */,
 				8C1B40001BA7EB2E00035A95 /* ProgressHUD.m in Sources */,
-				8C31EF9B1B9C850E00862996 /* SwiftyJSON.swift in Sources */,
 				8C2B279A1B9FEA3200EAAA52 /* LoveSongs.swift in Sources */,
 				8C31EF961B9C78E400862996 /* Singer+CoreDataProperties.swift in Sources */,
 				8CEFA4A31B9DDE020073EBC8 /* NetSong.swift in Sources */,
@@ -637,7 +638,7 @@
 		};
 		8C31EF671B9C56FB00862996 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8EC76485E2E1D0AB57E2E071 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = E86B476EAB7AB67FD433824C /* Pods-DouBanFM.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -647,12 +648,13 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "DouBanFM/DouBanFM-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		8C31EF681B9C56FB00862996 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8F514F72E91EFD32412EBBF6 /* Pods.release.xcconfig */;
+			baseConfigurationReference = 4FC327FCBA82E2E8604C75E2 /* Pods-DouBanFM.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -661,6 +663,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.xinnyu.DouBanFM;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "DouBanFM/DouBanFM-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -672,6 +675,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.xinnyu.DouBanFMTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DouBanFM.app/DouBanFM";
 			};
 			name = Debug;
@@ -684,6 +688,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.xinnyu.DouBanFMTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DouBanFM.app/DouBanFM";
 			};
 			name = Release;
@@ -695,6 +700,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.xinnyu.DouBanFMUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = DouBanFM;
 				USES_XCTRUNNER = YES;
 			};
@@ -707,6 +713,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.xinnyu.DouBanFMUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = DouBanFM;
 				USES_XCTRUNNER = YES;
 			};

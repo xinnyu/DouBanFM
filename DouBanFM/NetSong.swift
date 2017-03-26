@@ -22,7 +22,7 @@ class NetSong: NSObject {
     
     var image:UIImage {
         if picURL != nil{
-            return UIImage(data: NSData(contentsOfURL: NSURL(string: picURL!)!)!)!
+            return UIImage(data: try! Data(contentsOf: URL(string: picURL!)!))!
         }else{
             return UIImage(named: "cutegirl")!
         }
